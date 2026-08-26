@@ -1,66 +1,390 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa Honor Inmobiliaria</title>
+  <title>CasaHonor Inmobiliaria — Compra, venta y arriendo en Neiva y el Huila</title>
+  <meta name="description" content="Inmobiliaria en Neiva, Huila. Casas, apartamentos y lotes en venta y arriendo con acompañamiento legal. Avalúos, administración y legalización de vivienda. +57 313 644 2894.">
+  <link rel="canonical" href="https://www.casahonorinmobiliaria.com/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CasaHonor Inmobiliaria">
+  <meta property="og:title" content="CasaHonor Inmobiliaria — Tu hogar, nuestro compromiso">
+  <meta property="og:description" content="Casas, apartamentos y lotes en Neiva y el Huila con acompañamiento legal de principio a fin. Compra, venta, arriendo, avalúos y más.">
+  <meta property="og:url" content="https://www.casahonorinmobiliaria.com/">
+  <meta property="og:image" content="https://www.casahonorinmobiliaria.com/img/og-casahonor.jpg">
+  <meta property="og:locale" content="es_CO">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Datos estructurados: negocio inmobiliario local -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "CasaHonor Inmobiliaria",
+    "image": "https://www.casahonorinmobiliaria.com/img/logo-casahonor.png",
+    "url": "https://www.casahonorinmobiliaria.com/",
+    "telephone": "+573136442894",
+    "email": "clientes@casahonorinmobiliaria.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 21 No. 8A-25 Av. Tenerife",
+      "addressLocality": "Neiva",
+      "addressRegion": "Huila",
+      "addressCountry": "CO"
+    },
+    "areaServed": ["Neiva", "Palermo", "Rivera", "Huila"],
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00"}
+    ],
+    "sameAs": [
+      "https://www.facebook.com/Casahonorinmobiliaria",
+      "https://www.instagram.com/casahonorinmobiliaria/"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <header class="header">
-    <div class="container header__inner">
-      <a href="#" class="logo">Casa Honor <span>Inmobiliaria</span></a>
-      <nav class="nav">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="top">
+    <div class="wrap site-header__inner">
+      <a href="#top" class="brand" aria-label="CasaHonor Inmobiliaria, inicio">
+        <img src="img/logo-casahonor.png" alt="" class="brand__logo" width="188" height="61">
+      </a>
+      <nav class="nav" aria-label="Principal">
         <a href="#propiedades">Propiedades</a>
+        <a href="#servicios">Servicios</a>
         <a href="#nosotros">Nosotros</a>
+        <a href="#zonas">Zonas</a>
         <a href="#contacto">Contacto</a>
       </nav>
+      <a href="https://wa.me/573136442894" class="btn btn--amber nav__cta" target="_blank" rel="noopener">
+        <span class="dot"></span> Escríbenos
+      </a>
+      <button class="nav__toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <a href="#propiedades">Propiedades</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#zonas">Zonas</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://wa.me/573136442894" class="btn btn--amber" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
     </div>
   </header>
 
-  <main>
+  <main id="contenido">
+
+    <!-- ===== HERO ===== -->
     <section class="hero">
-      <div class="container">
-        <h1>Encuentra el hogar que mereces</h1>
-        <p>Compra, venta y alquiler de propiedades con la confianza de Casa Honor Inmobiliaria.</p>
-        <a href="#propiedades" class="btn">Ver propiedades</a>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="eyebrow__mark"></span> Neiva · Huila · Colombia</p>
+          <h1 class="hero__title">El Huila<br>tiene <span class="ital">casa</span>,<br>y tiene <span class="amber">honor</span>.</h1>
+          <p class="hero__lead">
+            Compra, venta y arriendo de vivienda en Neiva y sus municipios, con acompañamiento
+            legal de principio a fin. Sin letra pequeña. Con la firma de quien responde por su palabra.
+          </p>
+
+          <form class="search" id="search" aria-label="Buscar propiedad">
+            <div class="search__field">
+              <label for="s-tipo">Tipo</label>
+              <select id="s-tipo" name="tipo">
+                <option value="">Todos</option>
+                <option>Casa</option>
+                <option>Apartamento</option>
+                <option>Lote</option>
+                <option>Local / Oficina</option>
+              </select>
+            </div>
+            <div class="search__field">
+              <label for="s-op">Operación</label>
+              <select id="s-op" name="operacion">
+                <option value="">Venta y arriendo</option>
+                <option>Venta</option>
+                <option>Arriendo</option>
+              </select>
+            </div>
+            <div class="search__field">
+              <label for="s-zona">Zona</label>
+              <select id="s-zona" name="zona">
+                <option value="">Todo el Huila</option>
+                <option>Neiva</option>
+                <option>Palermo</option>
+                <option>Rivera</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn--amber search__btn">Buscar</button>
+          </form>
+
+          <ul class="hero__trust" aria-label="Señales de confianza">
+            <li><strong>+5</strong> años en el sector</li>
+            <li><strong>18</strong> propiedades activas</li>
+            <li><strong>100%</strong> con respaldo legal</li>
+          </ul>
+        </div>
+
+        <figure class="hero__media">
+          <img src="img/properties/prop-2.jpg" alt="Fachada de casa familiar en un barrio residencial de Neiva, Huila" loading="eager" width="1024" height="768">
+          <figcaption class="hero__tag">
+            <span class="hero__tag-op">En venta</span>
+            <span class="hero__tag-name">Casa · San Jorge I, Neiva</span>
+            <span class="hero__tag-price">$165.000.000</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <section id="propiedades" class="propiedades">
-      <div class="container">
-        <h2>Propiedades destacadas</h2>
-        <div class="grid" id="propiedades-grid">
-          <!-- Las tarjetas de propiedades se pueden generar aquí -->
+    <!-- ===== PROPIEDADES ===== -->
+    <section class="section" id="propiedades">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__mark"></span> Ofertas destacadas</p>
+            <h2 class="section__title">Propiedades que puedes visitar hoy</h2>
+          </div>
+          <a href="#contacto" class="section__link">Ver las 18 propiedades →</a>
+        </div>
+
+        <div class="cards">
+          <!-- card 1 -->
+          <article class="card">
+            <a class="card__media" href="#contacto">
+              <img src="img/properties/prop-4.jpg" alt="Casa de dos pisos en La Libertad, Neiva" loading="lazy" width="1024" height="1024">
+              <span class="card__op">Venta</span>
+            </a>
+            <div class="card__body">
+              <span class="card__type">Casa · Residencial</span>
+              <h3 class="card__title">Casa — La Libertad, Neiva</h3>
+              <p class="card__price">$250.000.000</p>
+              <ul class="card__specs">
+                <li><span>6</span> hab</li>
+                <li><span>2</span> baños</li>
+                <li><span>90</span> m²</li>
+              </ul>
+              <a class="card__cta" href="https://wa.me/573136442894?text=Hola%2C%20me%20interesa%20la%20casa%20en%20La%20Libertad%2C%20Neiva" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <!-- card 2 -->
+          <article class="card card--feature">
+            <a class="card__media" href="#contacto">
+              <img src="img/properties/prop-1.jpg" alt="Apartamento en el Edificio Quinta Avenida, centro de Neiva" loading="lazy" width="1024" height="768">
+              <span class="card__op">Venta</span>
+            </a>
+            <div class="card__body">
+              <span class="card__type">Apartamento · Estrato 4</span>
+              <h3 class="card__title">Edificio Quinta Avenida — Centro, Neiva</h3>
+              <p class="card__price">$250.000.000</p>
+              <ul class="card__specs">
+                <li><span>3</span> hab</li>
+                <li><span>3</span> baños</li>
+                <li><span>127</span> m²</li>
+              </ul>
+              <p class="card__note">Ascensor · aire acondicionado · 2 balcones · parqueadero</p>
+              <a class="card__cta" href="https://wa.me/573136442894?text=Hola%2C%20me%20interesa%20el%20apartamento%20en%20Quinta%20Avenida" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
+
+          <!-- card 3 -->
+          <article class="card">
+            <a class="card__media" href="#contacto">
+              <img src="img/properties/prop-3.jpg" alt="Casa esquinera de dos pisos en Villa Cecilia, Neiva" loading="lazy" width="1024" height="768">
+              <span class="card__op">Venta</span>
+            </a>
+            <div class="card__body">
+              <span class="card__type">Casa · Esquinera</span>
+              <h3 class="card__title">Casa — Villa Cecilia, Neiva</h3>
+              <p class="card__price">$300.000.000</p>
+              <ul class="card__specs">
+                <li><span>7</span> hab</li>
+                <li><span>3</span> baños</li>
+                <li><span>78</span> m²</li>
+              </ul>
+              <a class="card__cta" href="https://wa.me/573136442894?text=Hola%2C%20me%20interesa%20la%20casa%20en%20Villa%20Cecilia" target="_blank" rel="noopener">Consultar</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="nosotros" class="nosotros">
-      <div class="container">
-        <h2>Sobre nosotros</h2>
-        <p>Somos una inmobiliaria comprometida con la honestidad y el servicio de calidad para ayudarte a encontrar la propiedad ideal.</p>
+    <!-- ===== SERVICIOS ===== -->
+    <section class="section section--dark" id="servicios">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow eyebrow--light"><span class="eyebrow__mark"></span> Lo que hacemos</p>
+            <h2 class="section__title">Un solo aliado para todo el círculo inmobiliario</h2>
+          </div>
+        </div>
+        <div class="services">
+          <article class="service"><span class="service__n">01</span><h3>Compra y venta</h3><p>Encontramos comprador o vivienda con estudio previo de precio y condiciones del mercado.</p></article>
+          <article class="service"><span class="service__n">02</span><h3>Arrendamientos</h3><p>Publicación, selección de inquilinos y contrato. Tú recibes; nosotros gestionamos.</p></article>
+          <article class="service"><span class="service__n">03</span><h3>Administración de inmuebles</h3><p>Cuidamos tu propiedad y su renta mientras tú te ocupas de lo tuyo.</p></article>
+          <article class="service"><span class="service__n">04</span><h3>Avalúos urbanos y rurales</h3><p>Valoración técnica para vender, comprar, heredar o respaldar un crédito.</p></article>
+          <article class="service"><span class="service__n">05</span><h3>Legalización de vivienda</h3><p>Ponemos en regla títulos y documentos para que tu patrimonio sea indiscutible.</p></article>
+          <article class="service"><span class="service__n">06</span><h3>Licencias y englobes</h3><p>Licencias de construcción, englobes y desenglobes con acompañamiento jurídico.</p></article>
+        </div>
       </div>
     </section>
 
-    <section id="contacto" class="contacto">
-      <div class="container">
-        <h2>Contacto</h2>
-        <form class="form" id="contact-form">
-          <input type="text" name="nombre" placeholder="Nombre" required>
-          <input type="email" name="email" placeholder="Correo electrónico" required>
-          <textarea name="mensaje" placeholder="Mensaje" rows="4" required></textarea>
-          <button type="submit" class="btn">Enviar</button>
+    <!-- ===== NOSOTROS / E-E-A-T ===== -->
+    <section class="section" id="nosotros">
+      <div class="wrap about">
+        <div class="about__media">
+          <div class="about__badge">
+            <span class="about__badge-k">Dirección</span>
+            <span class="about__badge-v">Zoraida Fierro García</span>
+            <span class="about__badge-r">CEO · Gerente</span>
+          </div>
+        </div>
+        <div class="about__copy">
+          <p class="eyebrow"><span class="eyebrow__mark"></span> Quiénes somos</p>
+          <h2 class="section__title">Una firma huilense que pone la cara y responde por su palabra</h2>
+          <p>
+            CasaHonor Inmobiliaria nació en Neiva de la mano de <strong>Zoraida Fierro García</strong>, con
+            más de <strong>4 años de experiencia directa</strong> en compra-venta y arrendamiento de inmuebles y
+            un equipo de consultores y abogados especializados en el sector. No somos un portal anónimo: somos
+            personas del Huila, con oficina abierta, que acompañan cada operación de principio a fin.
+          </p>
+          <ul class="about__values">
+            <li>Responsabilidad</li><li>Calidad</li><li>Excelencia</li><li>Seguridad</li><li>Transparencia</li>
+          </ul>
+          <div class="about__proof">
+            <div><strong>Oficina física</strong><span>Av. Tenerife, Neiva — puedes visitarnos</span></div>
+            <div><strong>Respaldo jurídico</strong><span>Abogados propios en cada cierre</span></div>
+            <div><strong>Trato directo</strong><span>Hablas con quien decide, no con un bot</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ZONAS ===== -->
+    <section class="section section--soft" id="zonas">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__mark"></span> Dónde operamos</p>
+            <h2 class="section__title">Conocemos cada barrio, no solo cada dirección</h2>
+          </div>
+        </div>
+        <div class="zones">
+          <article class="zone"><h3>Neiva</h3><p>Centro, San Jorge, Villa Cecilia, Timanco, Brisas del Sena, La Libertad y más.</p></article>
+          <article class="zone"><h3>Palermo</h3><p>Santa Bárbara, Salamanca La Nueva y la vía Neiva–Santa Clara.</p></article>
+          <article class="zone"><h3>Rivera</h3><p>Conjuntos residenciales y lotes con proyección, como La Orquídea.</p></article>
+          <article class="zone zone--cta">
+            <h3>¿No ves tu zona?</h3>
+            <p>Operamos en todo el Huila. Cuéntanos qué buscas.</p>
+            <a href="#contacto" class="link-amber">Hablemos →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROCESO ===== -->
+    <section class="section" id="proceso">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__mark"></span> Cómo trabajamos</p>
+            <h2 class="section__title">Del primer mensaje a las llaves en tu mano</h2>
+          </div>
+        </div>
+        <ol class="steps">
+          <li><span class="steps__n">1</span><h3>Escúchanos, escúchate</h3><p>Nos cuentas qué necesitas y tu presupuesto. Nosotros preseleccionamos lo que de verdad encaja.</p></li>
+          <li><span class="steps__n">2</span><h3>Visitas sin presión</h3><p>Coordinamos visitas reales a las propiedades que te interesan, con datos claros de cada una.</p></li>
+          <li><span class="steps__n">3</span><h3>Revisión legal</h3><p>Nuestros abogados verifican títulos, libertad y tradición, y condiciones antes de firmar.</p></li>
+          <li><span class="steps__n">4</span><h3>Cierre y entrega</h3><p>Acompañamos la escritura, el pago y la entrega. Respondemos incluso después.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== CTA + CONTACTO ===== -->
+    <section class="section section--dark contact" id="contacto">
+      <div class="wrap contact__grid">
+        <div class="contact__copy">
+          <p class="eyebrow eyebrow--light"><span class="eyebrow__mark"></span> Hablemos</p>
+          <h2 class="section__title">Busquemos juntos el lugar que te mereces</h2>
+          <p class="contact__lead">Escríbenos por WhatsApp o déjanos un mensaje. Te respondemos en horario de oficina, siempre una persona real.</p>
+
+          <ul class="contact__data">
+            <li><span class="k">Teléfono / WhatsApp</span><a href="https://wa.me/573136442894" target="_blank" rel="noopener">+57 313 644 2894</a></li>
+            <li><span class="k">También</span><span>+57 314 590 5245 · +57 608 863 5218</span></li>
+            <li><span class="k">Correo</span><a href="mailto:clientes@casahonorinmobiliaria.com">clientes@casahonorinmobiliaria.com</a></li>
+            <li><span class="k">Oficina</span><span>Calle 21 No. 8A-25, Av. Tenerife, Neiva, Huila</span></li>
+            <li><span class="k">Horario</span><span>Lun–Vie 8am–12m y 2pm–6pm · Sáb 8am–12m</span></li>
+          </ul>
+          <div class="contact__social">
+            <a href="https://www.facebook.com/Casahonorinmobiliaria" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/casahonorinmobiliaria/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+
+        <form class="cform" id="contact-form" novalidate>
+          <div class="cform__row">
+            <label for="c-nombre">Nombre completo</label>
+            <input id="c-nombre" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="cform__row">
+            <label for="c-email">Correo electrónico</label>
+            <input id="c-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="cform__row">
+            <label for="c-tel">Teléfono</label>
+            <input id="c-tel" name="telefono" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="cform__row">
+            <label for="c-msg">¿Qué estás buscando?</label>
+            <textarea id="c-msg" name="mensaje" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--amber cform__submit">Enviar mensaje</button>
+          <p class="cform__note" id="cform-note" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2026 Casa Honor Inmobiliaria. Todos los derechos reservados.</p>
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="img/logo-casahonor.png" alt="CasaHonor Inmobiliaria" width="200" height="65">
+        <p>Tu hogar, nuestro compromiso. Compra, venta y arriendo de vivienda en Neiva y el Huila.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Pie de página">
+        <a href="#propiedades">Propiedades</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="site-footer__contact">
+        <a href="https://wa.me/573136442894" target="_blank" rel="noopener">+57 313 644 2894</a>
+        <a href="mailto:clientes@casahonorinmobiliaria.com">clientes@casahonorinmobiliaria.com</a>
+        <span>Av. Tenerife, Neiva, Huila</span>
+      </div>
+    </div>
+    <div class="wrap site-footer__legal">
+      <span>© 2026 CasaHonor Inmobiliaria. Todos los derechos reservados.</span>
+      <span>Neiva · Huila · Colombia</span>
     </div>
   </footer>
+
+  <a class="wa-float" href="https://wa.me/573136442894" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.5.7 4.8 1.9 6.8L3 29l6.7-2.1c1.9 1 4 1.6 6.3 1.6 7 0 12.7-5.7 12.7-12.7S23 3 16 3zm0 23.1c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.8 0-5.9 4.8-10.6 10.7-10.6 5.9 0 10.6 4.8 10.6 10.7 0 5.9-4.8 10.5-10.6 10.5zm6-7.9c-.3-.2-1.9-1-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.4-.6.1-.2.1-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.8 5.1.8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>
+  </a>
 
   <script src="js/main.js"></script>
 </body>
