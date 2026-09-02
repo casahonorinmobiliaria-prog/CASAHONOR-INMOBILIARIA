@@ -404,6 +404,24 @@
       (d.mensaje ? "• Mensaje: " + d.mensaje + "\n" : "");
   }
 
+  /* ---------- video testimonial (Fuerza Pública) ---------- */
+  function initVideo() {
+    $$("[data-video]").forEach(function (wrap) {
+      var vid = $("video", wrap), btn = $("[data-video-play]", wrap);
+      if (!vid || !btn) return;
+      function play() {
+        wrap.classList.add("is-playing");
+        vid.setAttribute("controls", "");
+        var p = vid.play();
+        if (p && p.catch) p.catch(function () {});
+        track("video_play", { origen: "fuerza_publica" });
+      }
+      btn.addEventListener("click", play);
+      vid.addEventListener("play", function () { wrap.classList.add("is-playing"); });
+      vid.addEventListener("pause", function () { if (vid.currentTime === 0 || vid.ended) wrap.classList.remove("is-playing"); });
+    });
+  }
+
   /* ---------- animaciones discretas ---------- */
   function initReveal() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
@@ -449,7 +467,7 @@
     [renderCatalog, fillData, initHero, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
      function () { initForm("contact-form", msgContacto); },
      function () { initForm("ownform", msgPropietario); },
-     initReveal, initSchema
+     initVideo, initReveal, initSchema
     ].forEach(function (fn) {
       try { fn(); } catch (e) { if (window.console) console.error("[CASAHONOR]", e); }
     });
