@@ -321,6 +321,30 @@ h1,h2,h3{font-family:var(--ff-h);font-weight:700;line-height:1.1;letter-spacing:
 .disc__body ul{columns:2;gap:1.5rem;padding-left:1.1rem;color:var(--text-soft);font-size:.94rem}
 .disc__note{margin-top:1rem;font-size:.86rem;color:var(--text-mute);font-style:italic}
 
+/* 9b. respaldo jurídico y técnico (sección oscura) */
+.backing{position:relative;overflow:hidden}
+.backing__orb{position:absolute;bottom:-22%;right:-6%;width:560px;height:560px;pointer-events:none;background:radial-gradient(circle,rgba(255,142,0,.20),transparent 62%);z-index:0}
+.backing .wrap{position:relative;z-index:1}
+.backing__head{max-width:60ch;margin:0 0 2.6rem}
+.backing__head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);color:var(--on-dark)}
+.backing__hl{color:var(--orange)}
+.backing__lead{color:var(--on-dark-soft);margin-top:1rem;font-size:1.06rem;max-width:62ch}
+.backing__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(1.6rem,4vw,3rem);align-items:start}
+.backing__svcs{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
+.backing__svc{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;background:var(--glass);border:1px solid var(--glass-line);border-radius:var(--r);padding:1.15rem 1.2rem;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .16s,transform .16s}
+.backing__svc:hover{border-color:rgba(255,142,0,.5);transform:translateY(-3px)}
+.backing__ic{width:46px;height:46px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,142,0,.14);color:var(--orange)}
+.backing__ic .ic{width:24px;height:24px}
+.backing__svc h3{color:var(--on-dark);font-size:1.08rem}
+.backing__svc p{color:var(--on-dark-soft);font-size:.92rem;margin-top:.2rem}
+.backing__panel{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--glass-line);border-radius:var(--r-lg);padding:1.6rem}
+.backing__panel-t{display:flex;align-items:center;gap:.55rem;font-family:var(--ff-h);font-weight:700;color:var(--on-dark);font-size:1.05rem;margin-bottom:1.15rem}
+.backing__panel-t .ic{width:20px;height:20px;color:var(--orange)}
+.backing__chips{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.55rem}
+.backing__chips li{font-size:.9rem;font-weight:600;color:var(--on-dark);background:rgba(255,255,255,.05);border:1px solid var(--glass-line);border-radius:100px;padding:.5rem .9rem;transition:border-color .16s,color .16s}
+.backing__chips li:hover{border-color:var(--orange);color:var(--orange)}
+.backing__note{color:var(--on-dark-soft);font-size:.82rem;margin-top:1.15rem;font-style:italic}
+
 /* 10. proceso */
 .steps{list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;padding:0;position:relative}
 .steps li{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem 1.2rem;box-shadow:var(--sh-sm)}
@@ -476,7 +500,7 @@ h1,h2,h3{font-family:var(--ff-h);font-weight:700;line-height:1.1;letter-spacing:
 
 /* ============================================================ RESPONSIVE */
 @media (max-width:1024px){
-  .owners__grid,.fp__in,.about__grid,.contact__grid,.tst{grid-template-columns:1fr}
+  .owners__grid,.fp__in,.about__grid,.contact__grid,.tst,.backing__grid{grid-template-columns:1fr}
   .ownform{position:static}
   .owners__copy h2{max-width:20ch}
   .fp__video{max-width:340px;margin-left:auto;margin-right:auto}
