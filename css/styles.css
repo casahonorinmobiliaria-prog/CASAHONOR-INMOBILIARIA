@@ -322,7 +322,7 @@ h1,h2,h3{font-family:var(--ff-h);font-weight:700;line-height:1.1;letter-spacing:
 .disc__note{margin-top:1rem;font-size:.86rem;color:var(--text-mute);font-style:italic}
 
 /* 9b. respaldo jurídico y técnico (sección oscura) */
-.backing{position:relative;overflow:hidden}
+.backing{position:relative;overflow:hidden;padding-block:clamp(4.5rem,9vw,8rem)}
 .backing__orb{position:absolute;bottom:-22%;right:-6%;width:560px;height:560px;pointer-events:none;background:radial-gradient(circle,rgba(255,142,0,.20),transparent 62%);z-index:0}
 .backing .wrap{position:relative;z-index:1}
 .backing__head{max-width:60ch;margin:0 0 2.6rem}
