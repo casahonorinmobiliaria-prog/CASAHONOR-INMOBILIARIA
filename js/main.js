@@ -131,20 +131,97 @@
     });
   }
 
-  /* ---------- catálogo de propiedades (filtra tarjetas estáticas del HTML) ---------- */
+  /* ---------- catálogo de propiedades (render dinámico desde el inventario) ---------- */
   var LIMIT = 6, showingAll = false;
   function val(sel) { var el = $(sel); return el ? el.value : ""; }
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  function areaSpec(p) {
+    if (!p.area) return "";
+    if (p.areaTipo === "terreno" && p.area >= 10000) return "<b>" + (p.area / 10000).toLocaleString("es-CO") + "</b> ha";
+    return "<b>" + p.area.toLocaleString("es-CO") + "</b> m²";
+  }
+  function galleryHtmlCard(p) {
+    var fotos = p.fotos || [p.foto];
+    var imgs = fotos.map(function (f, i) {
+      return '<img src="' + f + '" alt="' + esc(p.titulo) + ' - foto ' + (i + 1) + '" class="gimg' + (i === 0 ? ' is-active' : '') + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '" width="1100" height="800">';
+    }).join("");
+    var nav = fotos.length > 1 ? '<button type="button" class="gnav gnav--prev" aria-label="Foto anterior"><svg class="ic"><use href="#ic-chevron-l"/></svg></button><button type="button" class="gnav gnav--next" aria-label="Foto siguiente"><svg class="ic"><use href="#ic-chevron-r"/></svg></button><span class="gcount"><span class="gcount__i">1</span>/' + fotos.length + '</span>' : '';
+    return '<div class="card__media gallery" data-gallery>' + imgs + nav + '</div>';
+  }
+  function cardSpecs(p) {
+    var s = [];
+    if (p.habitaciones) s.push("<li><b>" + p.habitaciones + "</b> hab</li>");
+    if (p["baños"]) s.push("<li><b>" + p["baños"] + "</b> baños</li>");
+    var a = areaSpec(p); if (a) s.push("<li>" + a + "</li>");
+    if (!s.length) s.push("<li>" + esc(p.tipoLabel || "Inmueble") + " en venta</li>");
+    return '<ul class="card__specs">' + s.join("") + "</ul>";
+  }
+  function featSpecs(p) {
+    var s = [];
+    if (p.habitaciones) s.push("<li><b>" + p.habitaciones + "</b> habitaciones</li>");
+    if (p["baños"]) s.push("<li><b>" + p["baños"] + "</b> baños</li>");
+    var a = areaSpec(p); if (a) s.push("<li>" + a + "</li>");
+    return s.length ? '<ul class="pfeat__specs">' + s.join("") + "</ul>" : "";
+  }
+  function dataAttrs(p) {
+    return ' data-codigo="' + p.codigo + '" data-op="' + p.op + '" data-tipo="' + p.tipo + '" data-ciudad="' + esc(p.ciudad) + '" data-precio="' + (p.precio || 0) + '" data-hab="' + (p.habitaciones || 0) + '" data-ba="' + (p["baños"] || 0) + '"';
+  }
+  function infoMsg(p) { return "Hola, me interesa la propiedad código " + p.codigo + ", ubicada en " + p.sector + ", " + p.ciudad + ". Quiero recibir más información."; }
+
+  function cardHtml(p) {
+    return '<article class="card"' + dataAttrs(p) + '>' +
+      galleryHtmlCard(p) +
+      '<span class="card__op">Venta</span><span class="card__code">' + p.codigo + '</span>' +
+      '<div class="card__b">' +
+        '<span class="card__type">' + esc(p.tipoLabel || p.tipo) + ' · ' + esc(p.ciudad) + '</span>' +
+        '<h3 class="card__title">' + esc(p.titulo) + '</h3>' +
+        '<span class="card__loc">' + esc(p.sector) + ', ' + esc(p.ciudad) + '</span>' +
+        '<span class="card__price">' + formatCOP(p.precio) + '</span>' +
+        cardSpecs(p) +
+        '<div class="card__actions">' +
+          '<button type="button" class="btn btn--ghost" data-detail="' + p.codigo + '">Ver propiedad</button>' +
+          '<a class="btn btn--primary" data-wa="' + esc(infoMsg(p)) + '" href="#" target="_blank" rel="noopener">WhatsApp</a>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }
+  function featHtml(p) {
+    return '<article class="pfeat"' + dataAttrs(p) + '>' +
+      '<div class="pfeat__img"><img src="' + (p.foto || (p.fotos && p.fotos[0])) + '" alt="' + esc(p.alt || (p.titulo + ", " + p.ciudad)) + '" width="1200" height="800" loading="eager"></div>' +
+      '<div class="pfeat__scrim" aria-hidden="true"></div>' +
+      '<span class="pfeat__flag">Destacada</span>' +
+      '<div class="pfeat__panel glass">' +
+        '<span class="ptype">Venta · ' + esc(p.tipoLabel || p.tipo) + ' · Cód. ' + p.codigo + '</span>' +
+        '<h3>' + esc(p.titulo) + '</h3>' +
+        '<p class="pfeat__loc">' + esc(p.sector) + ', ' + esc(p.ciudad) + '</p>' +
+        '<p class="pfeat__price">' + formatCOP(p.precio) + '</p>' +
+        featSpecs(p) +
+        '<div class="pfeat__actions">' +
+          '<button type="button" class="btn btn--primary" data-detail="' + p.codigo + '">Ver propiedad</button>' +
+          '<a class="btn btn--glass" data-wa="' + esc(infoMsg(p)) + '" href="#" target="_blank" rel="noopener">Consultar por WhatsApp</a>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }
+  function renderCatalog() {
+    var grid = $("#prop-grid"); if (!grid) return;
+    var host = $("#prop-feat-host");
+    var feat = PROPS.filter(function (p) { return p.destacada; })[0];
+    if (host) host.innerHTML = feat ? featHtml(feat) : "";
+    var rest = PROPS.filter(function (p) { return !p.destacada; });
+    var vitrina = rest.filter(function (p) { return p.vitrina; });
+    var otras = rest.filter(function (p) { return !p.vitrina; });
+    grid.innerHTML = vitrina.concat(otras).map(cardHtml).join("");
+  }
 
   function cardMatches(card) {
-    var op = val("#f-op"), tipo = val("#f-tipo"), ciudad = val("#f-ciudad"),
-        precio = parseInt(val("#f-precio") || "0", 10), hab = parseInt(val("#f-hab") || "0", 10), ba = parseInt(val("#f-ba") || "0", 10);
+    var tipo = val("#f-tipo"), ciudad = val("#f-ciudad"),
+        precio = parseInt(val("#f-precio") || "0", 10);
     var d = card.dataset;
-    if (op && d.op !== op) return false;
     if (tipo && d.tipo !== tipo) return false;
     if (ciudad && d.ciudad !== ciudad) return false;
     if (precio && parseInt(d.precio || "0", 10) > precio) return false;
-    if (hab && parseInt(d.hab || "0", 10) < hab) return false;
-    if (ba && parseInt(d.ba || "0", 10) < ba) return false;
     return true;
   }
 
@@ -369,7 +446,7 @@
 
   /* ---------- init ---------- */
   function boot() {
-    [fillData, initHero, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
+    [renderCatalog, fillData, initHero, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
      function () { initForm("contact-form", msgContacto); },
      function () { initForm("ownform", msgPropietario); },
      initReveal, initSchema
