@@ -396,11 +396,11 @@
       "• Nombre: " + (d.nombre || "") + "\n" +
       "• WhatsApp: " + (d.whatsapp || "") + "\n" +
       (d.ciudad ? "• Ciudad: " + d.ciudad + "\n" : "") +
-      (d.sector ? "• Sector: " + d.sector + "\n" : "") +
-      (d.tipo ? "• Tipo: " + d.tipo + "\n" : "") +
-      "• Intención: " + (d.intencion || "") + "\n" +
+      (d.sector ? "• Sector / barrio: " + d.sector + "\n" : "") +
+      (d.tipo ? "• Tipo de inmueble: " + d.tipo + "\n" : "") +
+      (d.area ? "• Área aprox.: " + d.area + " m²\n" : "") +
       (d.precio ? "• Precio esperado: " + d.precio + "\n" : "") +
-      (d.mensaje ? "• Mensaje: " + d.mensaje + "\n" : "");
+      "• Interés: Vender";
   }
 
   /* ---------- video testimonial (Fuerza Pública) ---------- */
