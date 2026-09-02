@@ -291,7 +291,7 @@
     content.innerHTML =
       galleryHTML(p.fotos || [p.foto], p.titulo) +
       '<div class="modal__body">' +
-        '<span class="card__op">' + (p.op === "venta" ? "Venta" : "Arriendo") + '</span>' +
+        '<span class="card__op">Venta</span>' +
         '<h3 id="modal-title">' + p.titulo + '</h3>' +
         '<p class="card__loc">' + p.sector + ', ' + p.ciudad + ' · Código ' + p.codigo + '</p>' +
         '<p class="modal__price">' + formatCOP(p.precio) + '</p>' +
