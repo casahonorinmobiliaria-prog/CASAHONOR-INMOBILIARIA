@@ -333,27 +333,73 @@
       </div>
     </section>
 
-    <!-- TESTIMONIOS -->
-    <section class="s" id="testimonios" aria-labelledby="test-h">
+    <!-- HISTORIAS / RESEÑAS VERIFICADAS -->
+    <section class="s reviews" id="testimonios" aria-labelledby="test-h">
       <div class="wrap">
-        <div class="s__head"><div><h2 id="test-h">Historias que respaldan nuestro trabajo</h2><p class="s__sub">Experiencias reales de clientes de CASAHONOR.</p></div>
-          <a class="rating s__link" data-google-reviews href="#" target="_blank" rel="noopener"></a></div>
-        <div class="tst">
-          <figure class="tfeat">
-            <div class="tfeat__orb" aria-hidden="true"></div>
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <blockquote>Gracias a su acompañamiento pude hacer realidad el sueño de adquirir mi vivienda mediante el programa Vivienda 14. Como militar, recibí orientación en cada etapa.</blockquote>
-            <figcaption><span class="av">V</span><span><strong>Víctor Castaño</strong><span>Fuerza Pública · Caja Honor · 2026</span></span></figcaption>
-          </figure>
-          <div class="tside">
-            <figure class="tcard">
+        <div class="s__head">
+          <div>
+            <p class="eyebrow">Reseñas verificadas</p>
+            <h2 id="test-h">Historias que respaldan nuestro trabajo</h2>
+            <p class="s__sub">Experiencias reales de clientes que compraron o vendieron con CASAHONOR en Neiva y el Huila.</p>
+          </div>
+          <a class="s__link" data-reviews-link href="#" target="_blank" rel="noopener">Ver todas en Google <svg class="ic"><use href="#ic-arrow"/></svg></a>
+        </div>
+
+        <div class="reviews__grid">
+          <!-- Ancla de reputación (agregado real de Google) -->
+          <aside class="rep reveal" aria-label="Calificación de CASAHONOR en Google">
+            <span class="rep__orb" aria-hidden="true"></span>
+            <p class="rep__src"><svg class="ic"><use href="#ic-shield"/></svg> Reseñas de Google</p>
+            <div class="rep__score">
+              <span class="rep__num" data-rep-num>4.8</span>
+              <span class="rep__den">de 5</span>
+            </div>
+            <div class="rep__meter" role="img" aria-label="4.8 de 5 estrellas en Google" data-rep-meter>
+              <span class="rep__stars rep__stars--track" aria-hidden="true">★★★★★</span>
+              <span class="rep__stars rep__stars--fill" aria-hidden="true" data-rep-fill style="--fill:96%">★★★★★</span>
+            </div>
+            <p class="rep__count"><b data-rep-count>18</b> reseñas de clientes reales</p>
+            <span class="rep__rule" aria-hidden="true"></span>
+            <p class="rep__note">Una calificación construida caso por caso, en cada compra y cada venta que acompañamos.</p>
+            <a class="rep__cta" data-reviews-link href="#" target="_blank" rel="noopener">Leer las reseñas <svg class="ic"><use href="#ic-arrow"/></svg></a>
+          </aside>
+
+          <!-- Historias reales -->
+          <div class="reviews__stories">
+            <figure class="story story--feat reveal">
+              <span class="story__orb" aria-hidden="true"></span>
+              <span class="story__mark" aria-hidden="true">&#8220;</span>
+              <span class="story__tag"><svg class="ic"><use href="#ic-shield"/></svg> Testimonio verificado</span>
               <div class="stars" aria-hidden="true">★★★★★</div>
-              <blockquote>Mi experiencia fue muy buena. Desde el primer contacto recibí una excelente atención y encontré una casa que se ajustaba a lo que buscaba.</blockquote>
-              <figcaption><span class="av">J</span><span><strong>Josse</strong><span>Comprador · 2026</span></span></figcaption>
+              <blockquote>Gracias a su acompañamiento pude hacer realidad el sueño de adquirir mi vivienda mediante el programa Vivienda 14. Como militar, recibí orientación en cada etapa.</blockquote>
+              <figcaption>
+                <span class="story__av">V</span>
+                <span class="story__id">
+                  <strong>Víctor Castaño</strong>
+                  <span class="story__chips"><span>Fuerza Pública</span><span>Caja Honor</span><span>2026</span></span>
+                </span>
+              </figcaption>
             </figure>
-            <div class="tcard tcard--invite">
-              <p>¿Ya trabajaste con nosotros?</p>
-              <a class="route__cta" data-google-reviews href="#" target="_blank" rel="noopener">Deja tu reseña <svg class="ic"><use href="#ic-arrow"/></svg></a>
+
+            <div class="reviews__row">
+              <figure class="story reveal">
+                <span class="story__mark" aria-hidden="true">&#8220;</span>
+                <div class="stars" aria-hidden="true">★★★★★</div>
+                <blockquote>Mi experiencia fue muy buena. Desde el primer contacto recibí una excelente atención y encontré una casa que se ajustaba a lo que buscaba.</blockquote>
+                <figcaption>
+                  <span class="story__av story__av--sm">J</span>
+                  <span class="story__id">
+                    <strong>Josse</strong>
+                    <span class="story__chips"><span>Comprador</span><span>2026</span></span>
+                  </span>
+                </figcaption>
+              </figure>
+
+              <div class="invite reveal">
+                <p class="invite__t">¿Ya trabajaste con nosotros?</p>
+                <p class="invite__s">Tu experiencia ayuda a otras familias a decidir con confianza.</p>
+                <a class="invite__cta" data-reviews-link href="#" target="_blank" rel="noopener">Deja tu reseña <svg class="ic"><use href="#ic-arrow"/></svg></a>
+              </div>
             </div>
           </div>
         </div>

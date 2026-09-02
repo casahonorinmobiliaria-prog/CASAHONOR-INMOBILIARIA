@@ -56,6 +56,14 @@
     var rat = $("[data-rating]"); if (rat && CFG.ratingGoogle) rat.textContent = CFG.ratingGoogle + "★";
     var rsub = $("[data-reviews-sub]"); if (rsub) rsub.textContent = CFG.numeroReseñas ? CFG.numeroReseñas + " reseñas verificadas" : "Reseñas de clientes reales";
     var rcount = $("[data-reviews-count]"); if (rcount) rcount.textContent = (CFG.numeroReseñas ? CFG.numeroReseñas + " reseñas · " : "") + "Google";
+    // Muro de reputación (sección Historias): cifras reales desde config, sin inventar
+    var repNum = $("[data-rep-num]"); if (repNum && CFG.ratingGoogle) repNum.textContent = CFG.ratingGoogle;
+    var repCount = $("[data-rep-count]"); if (repCount && CFG.numeroReseñas) repCount.textContent = CFG.numeroReseñas;
+    if (CFG.ratingGoogle) {
+      var pct = Math.max(0, Math.min(100, (parseFloat(CFG.ratingGoogle) / 5) * 100));
+      var repFill = $("[data-rep-fill]"); if (repFill) repFill.style.setProperty("--fill", pct.toFixed(1) + "%");
+      var repMeter = $("[data-rep-meter]"); if (repMeter) repMeter.setAttribute("aria-label", CFG.ratingGoogle + " de 5 estrellas en Google");
+    }
     // Sello de oficina del hero → Google Maps (cómo llegar)
     $$("[data-map-link]").forEach(function (el) { if (CFG.mapsLink) el.setAttribute("href", CFG.mapsLink); });
   }
@@ -424,7 +432,7 @@
   /* ---------- animaciones discretas ---------- */
   function initReveal() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-    var els = $$(".route,.svc,.steps li,.tcard,.diff,.ownform");
+    var els = $$(".route,.svc,.steps li,.rep,.story,.invite,.diff,.ownform");
     try {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } });
