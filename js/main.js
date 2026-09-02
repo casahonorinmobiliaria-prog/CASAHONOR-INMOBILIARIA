@@ -209,10 +209,9 @@
     var host = $("#prop-feat-host");
     var feat = PROPS.filter(function (p) { return p.destacada; })[0];
     if (host) host.innerHTML = feat ? featHtml(feat) : "";
-    var rest = PROPS.filter(function (p) { return !p.destacada; });
-    var vitrina = rest.filter(function (p) { return p.vitrina; });
-    var otras = rest.filter(function (p) { return !p.vitrina; });
-    grid.innerHTML = vitrina.concat(otras).map(cardHtml).join("");
+    // En el home solo va la selección de vitrina (destacada + 2 filas de 3).
+    var vitrina = PROPS.filter(function (p) { return !p.destacada && p.vitrina; }).slice(0, LIMIT);
+    grid.innerHTML = vitrina.map(cardHtml).join("");
   }
 
   function cardMatches(card) {
