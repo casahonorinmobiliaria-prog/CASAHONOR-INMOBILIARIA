@@ -104,7 +104,7 @@
       <div class="hero__scrim" aria-hidden="true"></div>
       <div class="hero__orb" aria-hidden="true"></div>
       <a class="hero__office glass" data-map-link href="#" target="_blank" rel="noopener" aria-label="Ver la oficina en Google Maps">
-        <span class="hero__office-ic"><svg class="ic"><use href="#ic-pin"/></svg></span>
+        <img class="hero__office-ph" src="img/casahonor/oficina-fachada.jpg" alt="" width="1300" height="1024">
         <span class="hero__office-t"><b>Visítanos en Neiva</b><span>Av. Tenerife · Cómo llegar</span></span>
         <span class="hero__office-link"><svg class="ic"><use href="#ic-arrow"/></svg></span>
       </a>
@@ -232,6 +232,10 @@
             <span class="fp__badge"><svg class="ic"><use href="#ic-shield"/></svg>Testimonio real</span>
           </div>
           <figcaption class="fp__video-cap">Entrega de vivienda a un integrante de la Fuerza Pública y su familia, en Neiva.</figcaption>
+          <blockquote class="fp__quote">
+            <p>“Gracias a su acompañamiento pude hacer realidad el sueño de adquirir mi vivienda mediante el programa Vivienda 14. Como militar, recibí orientación en cada etapa.”</p>
+            <footer><b>Víctor Castaño</b>, militar. Reseña en Google.</footer>
+          </blockquote>
         </figure>
       </div>
     </section>
@@ -289,119 +293,63 @@
       </div>
     </section>
 
-    <!-- RESPALDO JURÍDICO Y TÉCNICO (sección oscura) -->
+    <!-- TRÁMITES DEL INMUEBLE (sección oscura): organizados por la pregunta del cliente -->
     <section class="s s--dark backing" id="servicios" aria-labelledby="serv-h">
-      <span class="backing__orb" aria-hidden="true"></span>
       <div class="wrap">
         <div class="backing__head">
-          <p class="eyebrow eyebrow--d">Respaldo jurídico y técnico</p>
-          <h2 id="serv-h">Lo complejo de un inmueble, <span class="backing__hl">también lo resolvemos</span>.</h2>
-          <p class="backing__lead">Antes de comprar o vender, revisamos títulos, áreas y trámites. Si tu propiedad tiene un enredo legal o documental, lo estudiamos y te explicamos cómo resolverlo.</p>
+          <h2 id="serv-h">Los trámites de tu inmueble, en una sola oficina</h2>
+          <p class="backing__lead">Antes de comprar, vender o construir, cuéntanos qué necesitas. Revisamos el caso y te decimos qué trámite sigue.</p>
         </div>
-        <div class="backing__grid">
-          <ul class="backing__svcs">
-            <li class="backing__svc">
-              <span class="backing__ic"><svg class="ic"><use href="#ic-scale"/></svg></span>
-              <div><h3>Avalúos</h3><p>Valoraciones técnicas urbanas y rurales.</p></div>
-            </li>
-            <li class="backing__svc">
-              <span class="backing__ic"><svg class="ic"><use href="#ic-doc"/></svg></span>
-              <div><h3>Saneamiento jurídico</h3><p>Estudiamos y ponemos en regla la documentación del inmueble.</p></div>
-            </li>
-            <li class="backing__svc">
-              <span class="backing__ic"><svg class="ic"><use href="#ic-blueprint"/></svg></span>
-              <div><h3>Licencias y englobes</h3><p>Trámites urbanísticos y de organización predial.</p></div>
-            </li>
+
+        <ul class="plan" aria-label="Servicios técnicos y jurídicos">
+          <li class="plan__col">
+            <svg class="ill" viewBox="0 0 64 64" aria-hidden="true"><path d="M8 30 32 12l24 18"/><path d="M13 27v26h38V27"/><path d="M27 53V41h10v12"/><path class="solid" d="M36 44l12-12h9v9L45 53z"/><circle cx="52" cy="37" r="1.8"/></svg>
+            <h3>¿Cuánto vale tu inmueble?</h3>
+            <ul class="plan__svcs"><li>Avalúos urbanos</li><li>Avalúos rurales</li></ul>
+            <p class="plan__use">Para vender, comprar, pedir un crédito o repartir una sucesión.</p>
+            <a class="plan__go" data-wa="Hola, necesito un avalúo de mi inmueble." href="#" target="_blank" rel="noopener">Pedir un avalúo<svg class="ic"><use href="#ic-arrow"/></svg></a>
+          </li>
+          <li class="plan__col">
+            <svg class="ill" viewBox="0 0 64 64" aria-hidden="true"><path d="M15 7h23l11 11v39H15z"/><path d="M38 7v11h11"/><path d="M22 26h20M22 33h20M22 40h10"/><circle class="solid" cx="43" cy="47" r="9"/><path d="M39 47l3 3 5-6"/></svg>
+            <h3>¿Están en regla los papeles?</h3>
+            <ul class="plan__svcs"><li>Estudio de títulos</li><li>Saneamiento jurídico</li><li>Legalización de vivienda</li></ul>
+            <p class="plan__use">Sabes qué tiene el inmueble antes de firmar y cómo resolverlo.</p>
+            <a class="plan__go" data-wa="Hola, quiero que revisen los papeles de un inmueble." href="#" target="_blank" rel="noopener">Revisar mis papeles<svg class="ic"><use href="#ic-arrow"/></svg></a>
+          </li>
+          <li class="plan__col">
+            <svg class="ill" viewBox="0 0 64 64" aria-hidden="true"><path d="M9 14h46v36H9z"/><path class="dash" d="M32 9v46"/><path d="M25 32h-9m0 0 4-4m-4 4 4 4M39 32h9m0 0-4-4m4 4-4 4"/><circle class="solid" cx="9" cy="14" r="2.4"/><circle class="solid" cx="55" cy="14" r="2.4"/><circle class="solid" cx="9" cy="50" r="2.4"/><circle class="solid" cx="55" cy="50" r="2.4"/></svg>
+            <h3>¿Vas a dividir o unir un lote?</h3>
+            <ul class="plan__svcs"><li>Desenglobe de predios</li><li>Englobe de predios</li></ul>
+            <p class="plan__use">Para que cada parte quede registrada por separado, o varias en una sola.</p>
+            <a class="plan__go" data-wa="Hola, quiero información sobre englobe o desenglobe de un predio." href="#" target="_blank" rel="noopener">Consultar mi lote<svg class="ic"><use href="#ic-arrow"/></svg></a>
+          </li>
+          <li class="plan__col">
+            <svg class="ill" viewBox="0 0 64 64" aria-hidden="true"><path d="M7 11h40v40H7z"/><path d="M14 44V29l13-9 13 9v15z"/><path class="dash" d="M14 44h26"/><path d="M23 44v-8h8v8"/><path class="solid" d="M41 55l15-15 5 5-15 15h-5z"/></svg>
+            <h3>¿Vas a construir o ampliar?</h3>
+            <ul class="plan__svcs"><li>Planos para construcción</li><li>Licencias de construcción</li></ul>
+            <p class="plan__use">Hacemos los planos y el trámite de la licencia ante la curaduría.</p>
+            <a class="plan__go" data-wa="Hola, voy a construir o ampliar y necesito planos o licencia de construcción." href="#" target="_blank" rel="noopener">Consultar mi obra<svg class="ic"><use href="#ic-arrow"/></svg></a>
+          </li>
+        </ul>
+
+        <div class="cases">
+          <div class="cases__t">
+            <h3>¿Tu inmueble tiene alguno de estos casos?</h3>
+            <p>Toca el tuyo y te respondemos por WhatsApp.</p>
+          </div>
+          <ul class="cases__list">
+            <li><a data-wa="Hola, mi inmueble tiene una sucesión pendiente. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Sucesión pendiente</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene una hipoteca. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Hipoteca</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene un embargo. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Embargo</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene patrimonio de familia. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Patrimonio de familia</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene afectación a vivienda familiar. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Afectación a vivienda familiar</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene diferencias de áreas o linderos. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Áreas o linderos que no coinciden</a></li>
+            <li><a data-wa="Hola, tengo una escritura sin registrar. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Escritura sin registrar</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene inconsistencias catastrales. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Inconsistencias catastrales</a></li>
+            <li><a data-wa="Hola, mi inmueble tiene construcciones que no aparecen en la escritura. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Construcción que no aparece en la escritura</a></li>
+            <li><a data-wa="Hola, los documentos de mi inmueble tienen errores. ¿Pueden estudiar mi caso?" href="#" target="_blank" rel="noopener">Errores en documentos</a></li>
           </ul>
-          <div class="backing__panel">
-            <p class="backing__panel-t"><svg class="ic"><use href="#ic-shield"/></svg> Situaciones que estudiamos</p>
-            <ul class="backing__chips">
-              <li>Sucesiones pendientes</li>
-              <li>Hipotecas</li>
-              <li>Embargos</li>
-              <li>Patrimonio de familia</li>
-              <li>Afectación a vivienda familiar</li>
-              <li>Diferencias de áreas o linderos</li>
-              <li>Escrituras sin registrar</li>
-              <li>Inconsistencias catastrales</li>
-              <li>Construcciones no incorporadas</li>
-              <li>Errores en documentos</li>
-            </ul>
-            <p class="backing__note">Cada caso está sujeto a estudio documental y jurídico.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HISTORIAS / RESEÑAS VERIFICADAS -->
-    <section class="s reviews" id="testimonios" aria-labelledby="test-h">
-      <div class="wrap">
-        <div class="s__head">
-          <div>
-            <p class="eyebrow">Reseñas verificadas</p>
-            <h2 id="test-h">Historias que respaldan nuestro trabajo</h2>
-            <p class="s__sub">Experiencias reales de clientes que compraron o vendieron con CASAHONOR en Neiva y el Huila.</p>
-          </div>
-          <a class="s__link" data-reviews-link href="#" target="_blank" rel="noopener">Ver todas en Google <svg class="ic"><use href="#ic-arrow"/></svg></a>
-        </div>
-
-        <div class="reviews__grid">
-          <!-- Ancla de reputación (agregado real de Google) -->
-          <aside class="rep reveal" aria-label="Calificación de CASAHONOR en Google">
-            <span class="rep__orb" aria-hidden="true"></span>
-            <p class="rep__src"><svg class="ic"><use href="#ic-shield"/></svg> Reseñas de Google</p>
-            <div class="rep__score">
-              <span class="rep__num" data-rep-num>4.8</span>
-              <span class="rep__den">de 5</span>
-            </div>
-            <div class="rep__meter" role="img" aria-label="4.8 de 5 estrellas en Google" data-rep-meter>
-              <span class="rep__stars rep__stars--track" aria-hidden="true">★★★★★</span>
-              <span class="rep__stars rep__stars--fill" aria-hidden="true" data-rep-fill style="--fill:96%">★★★★★</span>
-            </div>
-            <p class="rep__count"><b data-rep-count>18</b> reseñas de clientes reales</p>
-            <span class="rep__rule" aria-hidden="true"></span>
-            <p class="rep__note">Una calificación construida caso por caso, en cada compra y cada venta que acompañamos.</p>
-            <a class="rep__cta" data-reviews-link href="#" target="_blank" rel="noopener">Leer las reseñas <svg class="ic"><use href="#ic-arrow"/></svg></a>
-          </aside>
-
-          <!-- Historias reales -->
-          <div class="reviews__stories">
-            <figure class="story story--feat reveal">
-              <span class="story__orb" aria-hidden="true"></span>
-              <span class="story__mark" aria-hidden="true">&#8220;</span>
-              <span class="story__tag"><svg class="ic"><use href="#ic-shield"/></svg> Testimonio verificado</span>
-              <div class="stars" aria-hidden="true">★★★★★</div>
-              <blockquote>Gracias a su acompañamiento pude hacer realidad el sueño de adquirir mi vivienda mediante el programa Vivienda 14. Como militar, recibí orientación en cada etapa.</blockquote>
-              <figcaption>
-                <span class="story__av">V</span>
-                <span class="story__id">
-                  <strong>Víctor Castaño</strong>
-                  <span class="story__chips"><span>Fuerza Pública</span><span>Caja Honor</span><span>2026</span></span>
-                </span>
-              </figcaption>
-            </figure>
-
-            <div class="reviews__row">
-              <figure class="story reveal">
-                <span class="story__mark" aria-hidden="true">&#8220;</span>
-                <div class="stars" aria-hidden="true">★★★★★</div>
-                <blockquote>Mi experiencia fue muy buena. Desde el primer contacto recibí una excelente atención y encontré una casa que se ajustaba a lo que buscaba.</blockquote>
-                <figcaption>
-                  <span class="story__av story__av--sm">J</span>
-                  <span class="story__id">
-                    <strong>Josse</strong>
-                    <span class="story__chips"><span>Comprador</span><span>2026</span></span>
-                  </span>
-                </figcaption>
-              </figure>
-
-              <div class="invite reveal">
-                <p class="invite__t">¿Ya trabajaste con nosotros?</p>
-                <p class="invite__s">Tu experiencia ayuda a otras familias a decidir con confianza.</p>
-                <a class="invite__cta" data-reviews-link href="#" target="_blank" rel="noopener">Deja tu reseña <svg class="ic"><use href="#ic-arrow"/></svg></a>
-              </div>
-            </div>
-          </div>
+          <p class="cases__note">Cada caso está sujeto a estudio documental y jurídico.</p>
         </div>
       </div>
     </section>
@@ -420,11 +368,35 @@
             <li><svg class="ic"><use href="#ic-megaphone"/></svg><span><b>Gestión comercial</b><span>Promoción y marketing digital.</span></span></li>
           </ul>
         </div>
-        <div class="about__gallery">
-          <figure><img src="img/stock/equipo.jpg" alt="Equipo de trabajo unido en torno a un proyecto" loading="lazy" width="900" height="600"><figcaption>Trabajo en equipo</figcaption></figure>
-          <figure><img src="img/stock/oficina.jpg" alt="Personas revisando documentos en una oficina" loading="lazy" width="900" height="600"><figcaption>Asesoría</figcaption></figure>
+        <figure class="about__front">
+          <img src="img/casahonor/oficina-fachada.jpg" alt="Fachada naranja de la oficina de CASAHONOR Inmobiliaria con su aviso, en la Av. Tenerife de Neiva" loading="lazy" width="1300" height="1024">
+          <figcaption>
+            <span><b>Calle 21 No. 8A-25, Av. Tenerife</b>Neiva, Huila</span>
+            <a data-map-link href="#" target="_blank" rel="noopener">Cómo llegar</a>
+          </figcaption>
+        </figure>
+        <div class="about__team">
+          <ul class="team" aria-label="Fotos del equipo en la oficina">
+            <li class="team__wide"><img src="img/casahonor/oficina-equipo.jpg" alt="Sala de asesores de CASAHONOR con tres personas trabajando en sus escritorios" loading="lazy" width="1536" height="1024"></li>
+            <li><img src="img/casahonor/equipo-1.jpg" alt="Asesora de CASAHONOR sonriendo frente a su computador" loading="lazy" width="1536" height="1024" style="object-position:32% 30%"></li>
+            <li><img src="img/casahonor/equipo-4.jpg" alt="Asesora de CASAHONOR en su escritorio, mirando a la cámara" loading="lazy" width="1536" height="1024" style="object-position:28% 35%"></li>
+            <li><img src="img/casahonor/equipo-2.jpg" alt="Asesor de CASAHONOR trabajando en su escritorio" loading="lazy" width="1536" height="1024" style="object-position:40% 40%"></li>
+            <li><img src="img/casahonor/equipo-3.jpg" alt="Asesora de CASAHONOR atendiendo una llamada" loading="lazy" width="1536" height="1024" style="object-position:38% 45%"></li>
+            <li><img src="img/casahonor/equipo-5.jpg" alt="Asesor de CASAHONOR frente a su computador" loading="lazy" width="1600" height="898" style="object-position:62% 40%"></li>
+          </ul>
+          <p class="team__cap">El equipo que te atiende, en nuestra oficina de Neiva.</p>
         </div>
-        <p class="about__note">Imágenes de referencia. [PENDIENTE] Reemplazar por fotografías reales del equipo y la oficina.</p>
+        <div class="about__voice">
+          <blockquote>
+            <p>“Mi experiencia fue muy buena. Desde el primer contacto recibí una excelente atención y encontré una casa que se ajustaba a lo que buscaba.”</p>
+            <footer><b>Josse</b>, compró casa con nosotros. Reseña en Google.</footer>
+          </blockquote>
+          <div class="about__rating">
+            <p><b data-rep-num>4.8</b> de 5 en Google</p>
+            <a data-reviews-link href="#" target="_blank" rel="noopener">Leer las reseñas</a>
+            <a data-reviews-link href="#" target="_blank" rel="noopener">¿Ya trabajaste con nosotros? Deja la tuya</a>
+          </div>
+        </div>
       </div>
     </section>
 

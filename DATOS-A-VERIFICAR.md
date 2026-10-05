@@ -10,7 +10,7 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [ ] `numeroPropiedades` — vacío. Definir si se muestra y mantenerlo actualizado.
 
 ## 2. Contacto (`js/config.js`)
-- [ ] Teléfonos (3 números) — aclarar para qué sirve cada uno o dejar solo los vigentes.
+- [x] Teléfonos: los 3 números (313 644 2894, 314 590 5245, 608 863 5218) están activos (confirmado oct 2026).
 - [ ] Correo `clientes@…` (el sitio anterior también usaba `gerencia@…`). Confirmar cuál va.
 - [ ] Dirección exacta y `mapsEmbed` (que el pin caiga en la oficina real).
 - [ ] Horario de atención.
@@ -32,6 +32,9 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [ ] Destacada actual: **CH-18 (Casa campestre Monteloma #5)** por ser la foto más atractiva. Cambiable con `destacada:true`.
 
 ## 5. Testimonios
+- [x] (oct 2026) Se retiró la sección propia de reseñas: con 2 testimonios y 18 reseñas se veía escasa.
+      Víctor Castaño va bajo el video de Fuerza Pública y Josse en Nosotros, junto al 4.8 de Google.
+      Cuando haya 6+ testimonios con foto o video, se puede volver a armar una sección.
 - [ ] Solo se incluyen reales verificados (Víctor Castaño y Josse, de Google).
       Agregar más con autorización: foto/miniatura, nombre, tipo de proceso, año y enlace.
 - [ ] No usar nombres genéricos ("Cliente CASAHONOR").
@@ -40,8 +43,10 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [ ] Sección **institucional sin nombres** (se retiró "Zoraida Fierro García": NO es la gerente).
       Cuando tengan el nombre real y autorizado de la gerencia, agregarlo en `js/config.js`
       (`gerenteNombre`/`gerenteCargo`) y en la sección, con foto y firma reales.
-- [ ] Reemplazar imágenes de referencia por **fotografías reales**: oficina, equipo,
-      entregas, actividades con Fuerza Pública, propiedades.
+- [x] Oficina y equipo con **fotos reales** (oct 2026): fachada, sala de asesores y 5 retratos
+      en `img/casahonor/`. Los tableros con nombres y teléfonos de clientes se desenfocaron.
+- [ ] Pedir a cada persona del equipo **autorización escrita de uso de imagen** antes de publicar.
+- [ ] Faltan fotos reales de entregas, actividades con Fuerza Pública y propiedades.
 
 ## 7. Legales (`/legal/*.html`)
 - [ ] Completar razón social, NIT, matrícula/registro y fechas.
@@ -62,6 +67,5 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [ ] Crear imagen Open Graph `img/og-casahonor.jpg` (1200×630).
 - [ ] Optimizar imágenes a **WebP/AVIF** y generar versiones responsivas.
 - [ ] Foto profesional real para el hero (propiedad o entrega de llaves).
-- [ ] `img/stock/*.jpg` son **fotos stock provisionales** (Pexels, licencia libre sin
-      atribución obligatoria) para que "Quiénes somos" no quede vacío. Reemplazar por
-      fotografías reales del equipo, oficina y entregas apenas estén disponibles.
+- [x] `img/stock/*.jpg` ya no se usan en la página (reemplazadas por fotos reales en oct 2026).
+      Se pueden borrar de la carpeta cuando se confirme.
