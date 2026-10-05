@@ -13,6 +13,7 @@
 - **Ordena y despeja antes de disparar.** Sin desorden, ropa, cables, papeles ni objetos personales a la vista.
 - **Horizonte derecho.** Que las paredes/piso queden rectos (no inclinados).
 - **Limpia el lente** del celular antes de empezar.
+- **Borra o voltea los tableros** antes de disparar. Si se ven nombres o teléfonos de clientes, no se pueden publicar (Ley 1581 de 2012).
 - **Toma varias** de cada escena (distintos ángulos) para poder elegir.
 - **Alta resolución:** mínimo ~1600 px de ancho, ideal 2000 px o más.
 - ⚠️ **Al enviármelas, mándalas como "documento/archivo" en WhatsApp, NO como foto normal** — WhatsApp comprime y baja la calidad. O pásalas por Drive/USB.
@@ -44,8 +45,8 @@ Que las 3 tengan un **tono parecido** (cálido y claro) para que la rotación se
 - **Fachada:** horizontal, de frente o en 3/4, con la **señalización/logo visible**, frente limpio, de día.
 - **Interior:** recepción o sala de asesoría, ordenada y cálida, **idealmente con un asesor atendiendo o el equipo** (las personas dan confianza). Horizontal.
 
-> Pendiente que ya me comentaste: tomar la foto de la fachada. Con la real, la meto como
-> miniatura en el sello y/o como 4º cuadro de la rotación.
+> ✅ Hecho (oct 2026): la fachada va en la sección Nosotros y como miniatura en el botón
+> "Visítanos en Neiva" de la portada. La sala de asesores y los retratos van en la franja del equipo.
 
 ---
 
