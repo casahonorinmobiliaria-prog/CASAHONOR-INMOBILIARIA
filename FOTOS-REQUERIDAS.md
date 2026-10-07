@@ -22,7 +22,9 @@
 
 ## 1) Fondo del hero (lo más importante) — 2 o 3 fotos que rotan
 
-Reemplazan a las actuales (`ch-18-4`, `ch-13-2`, `ch-18`), que son tomas de celular planas.
+Hoy (oct 2026) rotan tres fotos del inventario actual en `img/hero/`: fachada blanca de San Jorge
+(CH-030), cocina de Sendero del Río (CH-020) y fachada de Coruña de Berdez (CH-011). Son buenas fotos de
+celular; una sesión profesional horizontal las superaría. Si se vende alguna de esas casas, cambiar su foto.
 
 **Qué buscamos en cada una:**
 - **Apaisada y amplia** (gran angular / lente 0.5x del celular para exteriores).
