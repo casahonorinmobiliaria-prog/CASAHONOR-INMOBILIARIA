@@ -11,7 +11,7 @@ window.CASAHONOR = {
   /* ---- Contacto (confirmado en el sitio actual / Google) ---- */
   whatsapp: "573136442894",            // número internacional sin "+"
   telefonos: ["+57 313 644 2894", "+57 314 590 5245", "+57 608 863 5218"],
-  correo: "clientes@casahonorinmobiliaria.com",
+  correo: "administracioncasahonor@gmail.com",
   direccion: "Calle 21 No. 8A-25, Av. Tenerife, Neiva, Huila",
   horario: "Lun–Vie 8:00am–12:00m y 2:00pm–6:00pm · Sáb 8:00am–12:00m",
   mapsEmbed: "https://www.google.com/maps?q=Calle%2021%20No.%208A-25%20Neiva%20Huila&output=embed",

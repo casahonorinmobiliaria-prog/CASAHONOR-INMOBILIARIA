@@ -12,7 +12,48 @@ services:
       - path: /*
         name: X-Content-Type-Options
         value: nosniff
+    # Direcciones del WordPress anterior (oct 2026) → sección equivalente de la web nueva.
+    # Lo que no esté aquí y no exista recibe 404.html (ya no se manda todo a la portada).
     routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+      - type: redirect
+        source: /propiedades/*
+        destination: /#propiedades
+      - type: redirect
+        source: /propiedades
+        destination: /#propiedades
+      - type: redirect
+        source: /property/*
+        destination: /#propiedades
+      - type: redirect
+        source: /property
+        destination: /#propiedades
+      - type: redirect
+        source: /agentes/*
+        destination: /#nosotros
+      - type: redirect
+        source: /agentes
+        destination: /#nosotros
+      - type: redirect
+        source: /nosotros/*
+        destination: /#nosotros
+      - type: redirect
+        source: /nosotros
+        destination: /#nosotros
+      - type: redirect
+        source: /contacto/*
+        destination: /#contacto
+      - type: redirect
+        source: /contacto
+        destination: /#contacto
+      - type: redirect
+        source: /blog/*
+        destination: /
+      - type: redirect
+        source: /blog
+        destination: /
+      - type: redirect
+        source: /2021/*
+        destination: /
+      - type: redirect
+        source: /category/*
+        destination: /

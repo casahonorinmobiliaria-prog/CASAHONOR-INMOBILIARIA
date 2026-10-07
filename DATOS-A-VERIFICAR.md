@@ -11,7 +11,7 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 
 ## 2. Contacto (`js/config.js`)
 - [x] Teléfonos: los 3 números (313 644 2894, 314 590 5245, 608 863 5218) están activos (confirmado oct 2026).
-- [ ] Correo `clientes@…` (el sitio anterior también usaba `gerencia@…`). Confirmar cuál va.
+- [x] (oct 2026) Correo de contacto: administracioncasahonor@gmail.com (web, datos estructurados y legales).
 - [ ] Dirección exacta y `mapsEmbed` (que el pin caiga en la oficina real).
 - [ ] Horario de atención.
 - [ ] Usuario real de **TikTok** (`tiktok`).
@@ -66,11 +66,13 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
       (`gerenteNombre`/`gerenteCargo`) y en la sección, con foto y firma reales.
 - [x] Oficina y equipo con **fotos reales** (oct 2026): fachada, sala de asesores y 5 retratos
       en `img/casahonor/`. Los tableros con nombres y teléfonos de clientes se desenfocaron.
-- [ ] Pedir a cada persona del equipo **autorización escrita de uso de imagen** antes de publicar.
+- [x] (oct 2026) El equipo autorizó publicar sus fotos.
 - [ ] Faltan fotos reales de entregas, actividades con Fuerza Pública y propiedades.
 
 ## 7. Legales (`/legal/*.html`)
-- [ ] Completar razón social, NIT, matrícula/registro y fechas.
+- [x] (oct 2026) Datos completos: CASAHONOR INMOBILIARIA, NIT 1075307827-7, matrícula mercantil 354145 (Cámara de Comercio del Huila).
+- [ ] El certificado muestra que el NIT es del propietario (persona natural). Para la Ley 1581 el responsable del
+      tratamiento es esa persona: decidir con el abogado si su nombre debe figurar en la política de datos.
 - [ ] **Revisión jurídica** de las 4 plantillas antes de publicar.
 
 ## 8. Formulario (`js/config.js` → `formEndpoint`)

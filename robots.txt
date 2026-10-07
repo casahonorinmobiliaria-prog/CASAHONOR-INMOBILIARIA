@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /legal/
+Disallow: /herramientas/
 
 Sitemap: https://www.casahonorinmobiliaria.com/sitemap.xml
