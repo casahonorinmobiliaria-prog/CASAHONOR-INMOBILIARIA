@@ -141,34 +141,57 @@
 
   /* ---------- catálogo de propiedades (render dinámico desde el inventario) ---------- */
   var LIMIT = 6, showingAll = false;
+  var TIPOS = { casa: "Casa", apartamento: "Apartamento", lote: "Lote", local: "Local / Oficina" };
   function val(sel) { var el = $(sel); return el ? el.value : ""; }
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function num(n) { return Number(n).toLocaleString("es-CO"); }
+  function plural(n, uno, varios) { return "<b>" + n + "</b> " + (n === 1 ? uno : varios); }
+
+  // Fotos de cada inmueble: img/inmuebles/<código>/01.webp (galería) y 01-800.webp (tarjeta)
+  function fotosDe(p) {
+    var n = parseInt(p.fotos, 10) || 0, dir = "img/inmuebles/" + String(p.codigo).toLowerCase() + "/", out = [];
+    for (var i = 1; i <= n; i++) out.push(dir + (i < 10 ? "0" : "") + i + ".webp");
+    return out;
+  }
+  function thumb(src) { return src.replace(/\.webp$/, "-800.webp"); }
+  // URL absoluta: dentro de una variable CSS una ruta relativa se resolvería desde css/
+  function absUrl(u) { try { return new URL(u, document.baseURI).href; } catch (e) { return u; } }
 
   function areaSpec(p) {
     if (!p.area) return "";
-    if (p.areaTipo === "terreno" && p.area >= 10000) return "<b>" + (p.area / 10000).toLocaleString("es-CO") + "</b> ha";
-    return "<b>" + p.area.toLocaleString("es-CO") + "</b> m²";
+    if (p.areaTipo === "terreno" && p.area >= 10000) return "<b>" + num(p.area / 10000) + "</b> ha";
+    return "<b>" + num(p.area) + "</b> m²";
   }
-  function galleryHtmlCard(p) {
-    var fotos = p.fotos || [p.foto];
-    var imgs = fotos.map(function (f, i) {
-      return '<img src="' + f + '" alt="' + esc(p.titulo) + ' - foto ' + (i + 1) + '" class="gimg' + (i === 0 ? ' is-active' : '') + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '" width="1100" height="800">';
+  // Solo la primera foto lleva src; las demás se cargan al pasar (data-src)
+  function galleryImgs(fotos, name, eager) {
+    return fotos.map(function (f, i) {
+      var src = (i === 0 ? 'src="' : 'data-src="') + f + '"';
+      return '<img ' + src + ' alt="' + esc(name) + ' - foto ' + (i + 1) + '" class="gimg' + (i === 0 ? ' is-active' : '') + '" loading="' + (i === 0 && eager ? "eager" : "lazy") + '" decoding="async">';
     }).join("");
-    var nav = fotos.length > 1 ? '<button type="button" class="gnav gnav--prev" aria-label="Foto anterior"><svg class="ic"><use href="#ic-chevron-l"/></svg></button><button type="button" class="gnav gnav--next" aria-label="Foto siguiente"><svg class="ic"><use href="#ic-chevron-r"/></svg></button><span class="gcount"><span class="gcount__i">1</span>/' + fotos.length + '</span>' : '';
-    return '<div class="card__media gallery" data-gallery>' + imgs + nav + '</div>';
+  }
+  function galleryNav(n) {
+    return n > 1 ? '<button type="button" class="gnav gnav--prev" aria-label="Foto anterior"><svg class="ic"><use href="#ic-chevron-l"/></svg></button><button type="button" class="gnav gnav--next" aria-label="Foto siguiente"><svg class="ic"><use href="#ic-chevron-r"/></svg></button><span class="gcount"><span class="gcount__i">1</span>/' + n + '</span>' : '';
+  }
+  // Inmueble sin fotos todavía: placa con el nombre del barrio
+  function plateHtml(p, cls) {
+    var name = String(p.sector || p.ciudad || "");
+    return '<div class="plate' + (cls ? " " + cls : "") + '" style="--len:' + Math.max(6, name.length) + '">' +
+      '<span class="plate__name" aria-hidden="true">' + esc(name) + '</span>' +
+      '<span class="plate__soon"><svg class="ic" aria-hidden="true"><use href="#ic-camera"/></svg>Fotos pronto</span>' +
+    '</div>';
   }
   function cardSpecs(p) {
     var s = [];
     if (p.habitaciones) s.push("<li><b>" + p.habitaciones + "</b> hab</li>");
-    if (p["baños"]) s.push("<li><b>" + p["baños"] + "</b> baños</li>");
+    if (p["baños"]) s.push("<li>" + plural(p["baños"], "baño", "baños") + "</li>");
     var a = areaSpec(p); if (a) s.push("<li>" + a + "</li>");
     if (!s.length) s.push("<li>" + esc(p.tipoLabel || "Inmueble") + " en venta</li>");
     return '<ul class="card__specs">' + s.join("") + "</ul>";
   }
   function featSpecs(p) {
     var s = [];
-    if (p.habitaciones) s.push("<li><b>" + p.habitaciones + "</b> habitaciones</li>");
-    if (p["baños"]) s.push("<li><b>" + p["baños"] + "</b> baños</li>");
+    if (p.habitaciones) s.push("<li>" + plural(p.habitaciones, "habitación", "habitaciones") + "</li>");
+    if (p["baños"]) s.push("<li>" + plural(p["baños"], "baño", "baños") + "</li>");
     var a = areaSpec(p); if (a) s.push("<li>" + a + "</li>");
     return s.length ? '<ul class="pfeat__specs">' + s.join("") + "</ul>" : "";
   }
@@ -176,10 +199,18 @@
     return ' data-codigo="' + p.codigo + '" data-op="' + p.op + '" data-tipo="' + p.tipo + '" data-ciudad="' + esc(p.ciudad) + '" data-precio="' + (p.precio || 0) + '" data-hab="' + (p.habitaciones || 0) + '" data-ba="' + (p["baños"] || 0) + '"';
   }
   function infoMsg(p) { return "Hola, me interesa la propiedad código " + p.codigo + ", ubicada en " + p.sector + ", " + p.ciudad + ". Quiero recibir más información."; }
+  function fotosMsg(p) { return "Hola, me interesa la propiedad código " + p.codigo + " en " + p.sector + ", " + p.ciudad + ". ¿Me pueden enviar fotos e información?"; }
 
   function cardHtml(p) {
-    return '<article class="card"' + dataAttrs(p) + '>' +
-      galleryHtmlCard(p) +
+    var fotos = fotosDe(p);
+    var media = fotos.length
+      ? '<div class="card__media gallery" data-gallery style="--gbg:url(' + absUrl(thumb(fotos[0])) + ')">' + galleryImgs(fotos.map(thumb), p.titulo, false) + galleryNav(fotos.length) + '</div>'
+      : '<div class="card__media">' + plateHtml(p) + '</div>';
+    var wa = fotos.length
+      ? '<a class="btn btn--primary" data-wa="' + esc(infoMsg(p)) + '" href="#" target="_blank" rel="noopener">WhatsApp</a>'
+      : '<a class="btn btn--primary" data-wa="' + esc(fotosMsg(p)) + '" href="#" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-chat"/></svg>Pedir fotos</a>';
+    return '<article class="card' + (fotos.length ? '' : ' card--soon') + '"' + dataAttrs(p) + '>' +
+      media +
       '<span class="card__op">Venta</span><span class="card__code">' + p.codigo + '</span>' +
       '<div class="card__b">' +
         '<span class="card__type">' + esc(p.tipoLabel || p.tipo) + ' · ' + esc(p.ciudad) + '</span>' +
@@ -189,14 +220,14 @@
         cardSpecs(p) +
         '<div class="card__actions">' +
           '<button type="button" class="btn btn--ghost" data-detail="' + p.codigo + '">Ver propiedad</button>' +
-          '<a class="btn btn--primary" data-wa="' + esc(infoMsg(p)) + '" href="#" target="_blank" rel="noopener">WhatsApp</a>' +
+          wa +
         '</div>' +
       '</div>' +
     '</article>';
   }
   function featHtml(p) {
     return '<article class="pfeat"' + dataAttrs(p) + '>' +
-      '<div class="pfeat__img"><img src="' + (p.foto || (p.fotos && p.fotos[0])) + '" alt="' + esc(p.alt || (p.titulo + ", " + p.ciudad)) + '" width="1200" height="800" loading="eager"></div>' +
+      '<div class="pfeat__img"><img src="' + fotosDe(p)[0] + '" alt="' + esc(p.titulo + ", " + p.sector + ", " + p.ciudad) + '" width="1600" height="1200" loading="eager"' + (p.foco ? ' style="object-position:' + esc(p.foco) + '"' : '') + '></div>' +
       '<div class="pfeat__scrim" aria-hidden="true"></div>' +
       '<span class="pfeat__flag">Destacada</span>' +
       '<div class="pfeat__panel glass">' +
@@ -212,14 +243,40 @@
       '</div>' +
     '</article>';
   }
+  // Orden de la grilla: vitrina (en su posición), luego con fotos, luego "Fotos pronto"; en esos dos grupos, por precio
+  function rango(p) { return p.vitrina ? 0 : (fotosDe(p).length ? 1 : 2); }
+  function posVitrina(p) { return typeof p.vitrina === "number" ? p.vitrina : 99; }
   function renderCatalog() {
     var grid = $("#prop-grid"); if (!grid) return;
     var host = $("#prop-feat-host");
-    var feat = PROPS.filter(function (p) { return p.destacada; })[0];
+    var feat = PROPS.filter(function (p) { return p.destacada && fotosDe(p).length; })[0];
     if (host) host.innerHTML = feat ? featHtml(feat) : "";
-    // En el home solo va la selección de vitrina (destacada + 2 filas de 3).
-    var vitrina = PROPS.filter(function (p) { return !p.destacada && p.vitrina; }).slice(0, LIMIT);
-    grid.innerHTML = vitrina.map(cardHtml).join("");
+    var resto = PROPS.filter(function (p) { return p !== feat; }).sort(function (a, b) {
+      return (rango(a) - rango(b)) || (posVitrina(a) - posVitrina(b)) || ((a.precio || 0) - (b.precio || 0));
+    });
+    grid.innerHTML = resto.map(cardHtml).join("");
+  }
+
+  /* ---------- opciones del buscador según el inventario ---------- */
+  function buildSearchOptions() {
+    if (!PROPS.length) return;
+    var ciudades = [], tipos = [];
+    PROPS.forEach(function (p) {
+      if (p.ciudad && ciudades.indexOf(p.ciudad) < 0) ciudades.push(p.ciudad);
+      if (p.tipo && tipos.indexOf(p.tipo) < 0) tipos.push(p.tipo);
+    });
+    ciudades.sort();
+    tipos = Object.keys(TIPOS).filter(function (t) { return tipos.indexOf(t) >= 0; });
+    fillOpts("#f-ciudad", "Todo el Huila", ciudades.map(function (c) { return [c, c]; }));
+    fillOpts("#f-tipo", "Todos", tipos.map(function (t) { return [t, TIPOS[t]]; }));
+  }
+  function fillOpts(selId, todos, pares) {
+    var sel = $(selId); if (!sel) return;
+    var menu = sel.parentNode && $(".hsearch__menu", sel.parentNode);
+    sel.innerHTML = '<option value="">' + esc(todos) + '</option>' +
+      pares.map(function (o) { return '<option value="' + esc(o[0]) + '">' + esc(o[1]) + '</option>'; }).join("");
+    if (menu) menu.innerHTML = '<li class="hsearch__opt is-sel" role="option" aria-selected="true" data-val="">' + esc(todos) + '</li>' +
+      pares.map(function (o) { return '<li class="hsearch__opt" role="option" aria-selected="false" data-val="' + esc(o[0]) + '">' + esc(o[1]) + '</li>'; }).join("");
   }
 
   function cardMatches(card) {
@@ -236,7 +293,7 @@
     var grid = $("#prop-grid"); if (!grid) return;
     // Destacada (fuera de la grilla): se oculta si no coincide con el filtro
     var feat = $(".pfeat");
-    var featMatch = true;
+    var featMatch = false;
     if (feat) { featMatch = cardMatches(feat); feat.hidden = !featMatch; }
     var cards = $$(".card", grid);
     var matched = cards.filter(cardMatches);
@@ -245,40 +302,76 @@
     shown.forEach(function (c) { c.hidden = false; });
     var empty = $("#prop-empty");
     if (empty) empty.hidden = (matched.length > 0 || featMatch);
-    var btn = $("#ver-todas");
-    if (btn) btn.style.display = (matched.length > LIMIT && !showingAll) ? "" : "none";
+    var faltan = matched.length > shown.length;
+    $$("[data-ver-todas]").forEach(function (b) { b.hidden = !faltan; });
+    var total = $("[data-total]"); if (total) total.textContent = matched.length + (featMatch ? 1 : 0);
+  }
+
+  // "Ver todo el inventario": muestra el resto de tarjetas y lleva el foco a la primera nueva
+  function verTodas(e) {
+    var grid = $("#prop-grid"); if (!grid) return;
+    var antes = $$(".card:not([hidden])", grid);
+    showingAll = true;
+    applyFilters();
+    var nuevas = $$(".card:not([hidden])", grid).filter(function (c) { return antes.indexOf(c) < 0; });
+    nuevas.forEach(function (c, i) {
+      c.classList.remove("is-new"); void c.offsetWidth;
+      c.style.setProperty("--i", Math.min(i, 8));
+      c.classList.add("is-new");
+    });
+    var first = nuevas[0] && $("[data-detail]", nuevas[0]);
+    if (first) {
+      first.focus({ preventScroll: true });
+      if (e && e.currentTarget && e.currentTarget.id !== "ver-todas") {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        nuevas[0].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      }
+    }
+    track("ver_todas_propiedades");
   }
 
   function initCatalog() {
     if (!$("#prop-grid")) return;
     $$("#filters select").forEach(function (s) { s.addEventListener("change", function () { showingAll = false; applyFilters(); }); });
-    var btn = $("#ver-todas");
-    if (btn) btn.addEventListener("click", function () { showingAll = true; applyFilters(); track("ver_todas_propiedades"); });
+    $$("[data-ver-todas]").forEach(function (b) { b.addEventListener("click", verTodas); });
     // Botones "Ver propiedad" de la destacada y de la grilla
     $$("[data-detail]").forEach(function (b) { b.addEventListener("click", function () { openModal(b.getAttribute("data-detail")); }); });
     applyFilters();
   }
+  // Enlace directo a una propiedad: .../#CH-005 abre su ficha
+  function openFromHash() {
+    var m = /^#(CH-\d+)$/i.exec(location.hash);
+    if (!m) return;
+    var sec = $("#propiedades"); if (sec) sec.scrollIntoView();
+    openModal(m[1].toUpperCase());
+  }
 
   /* ---------- galerías con flechas ---------- */
-  function wireGallery(root) {
+  function loadImg(im) {
+    var s = im && im.getAttribute("data-src");
+    if (s) { im.src = s; im.removeAttribute("data-src"); }
+  }
+  function wireGallery(root, preload) {
     var imgs = $$(".gimg", root), prev = $(".gnav--prev", root), next = $(".gnav--next", root), counter = $(".gcount__i", root);
     if (imgs.length < 2) return;
     var idx = 0;
     function show(i) {
       idx = (i + imgs.length) % imgs.length;
+      loadImg(imgs[idx]); loadImg(imgs[(idx + 1) % imgs.length]);
       imgs.forEach(function (im, k) { im.classList.toggle("is-active", k === idx); });
+      root.style.setProperty("--gbg", "url(" + absUrl(imgs[idx].getAttribute("src")) + ")");
       if (counter) counter.textContent = (idx + 1);
+    }
+    // La siguiente foto se pide cuando la persona se acerca a la galería, no antes
+    if (preload) loadImg(imgs[1]);
+    else {
+      root.addEventListener("pointerenter", function () { loadImg(imgs[(idx + 1) % imgs.length]); });
+      root.addEventListener("focusin", function () { loadImg(imgs[(idx + 1) % imgs.length]); });
     }
     if (prev) prev.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); show(idx - 1); });
     if (next) next.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); show(idx + 1); });
   }
-  function initGalleries() { $$("[data-gallery]").forEach(wireGallery); }
-  function galleryHTML(fotos, name) {
-    if (!fotos || !fotos.length) return "";
-    var imgs = fotos.map(function (f, i) { return '<img src="' + f + '" alt="' + name + ' - foto ' + (i + 1) + '" class="gimg' + (i === 0 ? ' is-active' : '') + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">'; }).join("");
-    var nav = fotos.length > 1 ? '<button type="button" class="gnav gnav--prev" aria-label="Foto anterior"><svg class="ic"><use href="#ic-chevron-l"/></svg></button><button type="button" class="gnav gnav--next" aria-label="Foto siguiente"><svg class="ic"><use href="#ic-chevron-r"/></svg></button><span class="gcount"><span class="gcount__i">1</span>/' + fotos.length + '</span>' : '';
-    return '<div class="modal__img gallery" data-gallery>' + imgs + nav + '</div>';
-  }
+  function initGalleries() { $$("[data-gallery]").forEach(function (g) { wireGallery(g, false); }); }
 
   /* ---------- modal de detalle ---------- */
   var lastFocus = null;
@@ -286,47 +379,57 @@
     var p = PROPS.filter(function (x) { return x.codigo === code; })[0];
     var modal = $("#prop-modal"), content = $("#modal-content");
     if (!p || !modal || !content) return;
+    var fotos = fotosDe(p);
     var specs = [];
-    if (p.habitaciones) specs.push("<li><b>" + p.habitaciones + "</b> habitaciones</li>");
-    if (p.baños) specs.push("<li><b>" + p.baños + "</b> baños</li>");
-    if (p.area) specs.push("<li><b>" + p.area + "</b> m²</li>");
-    if (p.parqueadero) specs.push("<li><b>" + p.parqueadero + "</b> parqueadero</li>");
+    if (p.habitaciones) specs.push("<li>" + plural(p.habitaciones, "habitación", "habitaciones") + "</li>");
+    if (p["baños"]) specs.push("<li>" + plural(p["baños"], "baño", "baños") + "</li>");
+    var a = areaSpec(p); if (a) specs.push("<li>" + a + "</li>");
+    if (p.parqueadero) specs.push("<li>" + plural(p.parqueadero, "parqueadero", "parqueaderos") + "</li>");
     if (p.estrato) specs.push("<li>Estrato <b>" + p.estrato + "</b></li>");
     var visitaMsg = "Hola, quiero agendar una visita a la propiedad código " + p.codigo + " (" + p.titulo + ", " + p.sector + ").";
-    var infoMsg = "Hola, me interesa la propiedad código " + p.codigo + ", ubicada en " + p.sector + ", " + p.ciudad + ". Quiero recibir más información.";
-    var similares = PROPS.filter(function (x) { return x.codigo !== p.codigo && (x.tipo === p.tipo || x.op === p.op); }).slice(0, 2);
+    var acciones = fotos.length
+      ? '<a class="btn btn--primary" href="' + waLink(visitaMsg) + '" target="_blank" rel="noopener">Agendar visita</a>' +
+        '<a class="btn btn--ghost" href="' + waLink(infoMsg(p)) + '" target="_blank" rel="noopener">Consultar por WhatsApp</a>'
+      : '<a class="btn btn--primary" href="' + waLink(fotosMsg(p)) + '" target="_blank" rel="noopener">Pedir fotos por WhatsApp</a>' +
+        '<a class="btn btn--ghost" href="' + waLink(visitaMsg) + '" target="_blank" rel="noopener">Agendar visita</a>';
+    // Similares: mismo tipo, precio más cercano
+    var similares = PROPS.filter(function (x) { return x.codigo !== p.codigo && x.tipo === p.tipo; })
+      .sort(function (x, y) { return Math.abs((x.precio || 0) - (p.precio || 0)) - Math.abs((y.precio || 0) - (p.precio || 0)); })
+      .slice(0, 2);
 
     content.innerHTML =
-      galleryHTML(p.fotos || [p.foto], p.titulo) +
+      (fotos.length
+        ? '<div class="modal__img gallery" data-gallery style="--gbg:url(' + absUrl(fotos[0]) + ')">' + galleryImgs(fotos, p.titulo, true) + galleryNav(fotos.length) + '</div>'
+        : plateHtml(p, "plate--modal")) +
       '<div class="modal__body">' +
         '<span class="card__op">Venta</span>' +
-        '<h3 id="modal-title">' + p.titulo + '</h3>' +
-        '<p class="card__loc">' + p.sector + ', ' + p.ciudad + ' · Código ' + p.codigo + '</p>' +
+        '<h3 id="modal-title">' + esc(p.titulo) + '</h3>' +
+        '<p class="card__loc">' + esc(p.sector) + ', ' + esc(p.ciudad) + ' · Código ' + p.codigo + '</p>' +
         '<p class="modal__price">' + formatCOP(p.precio) + '</p>' +
         (specs.length ? '<ul class="modal__specs">' + specs.join("") + '</ul>' : '') +
-        '<p class="modal__desc">' + (p.detalles || "") + '</p>' +
+        (p.detalles ? '<p class="modal__desc">' + esc(p.detalles) + '</p>' : '') +
         '<p class="modal__desc"><b>Formas de pago:</b> recursos propios, crédito hipotecario o Caja Honor (Fuerza Pública), según tu perfil. Te orientamos en el proceso.</p>' +
-        '<div class="modal__actions">' +
-          '<a class="btn btn--primary" href="' + waLink(visitaMsg) + '" target="_blank" rel="noopener">Agendar visita</a>' +
-          '<a class="btn btn--ghost" href="' + waLink(infoMsg) + '" target="_blank" rel="noopener">Consultar por WhatsApp</a>' +
-        '</div>' +
+        '<div class="modal__actions">' + acciones + '</div>' +
         (similares.length ? '<p class="card__type" style="margin-top:1.4rem">Propiedades similares</p>' +
           '<div class="modal__actions">' + similares.map(function (s) {
-            return '<button type="button" class="btn btn--ghost" data-sim="' + s.codigo + '">' + s.titulo + ' · ' + formatCOP(s.precio) + '</button>';
+            return '<button type="button" class="btn btn--ghost" data-sim="' + s.codigo + '">' + esc(s.titulo) + ' · ' + formatCOP(s.precio) + '</button>';
           }).join("") + '</div>' : '') +
       '</div>';
 
-    lastFocus = document.activeElement;
+    if (modal.hidden) lastFocus = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = "hidden";
     $(".modal__x", modal).focus();
-    var mg = $(".gallery", content); if (mg) wireGallery(mg);
+    var mg = $(".gallery", content); if (mg) wireGallery(mg, true);
     $$("[data-sim]", content).forEach(function (b) { b.addEventListener("click", function () { openModal(b.getAttribute("data-sim")); }); });
+    // La dirección queda como .../#CH-005 para compartir la ficha
+    if (window.history && history.replaceState) history.replaceState(null, "", "#" + p.codigo);
     track("ver_propiedad", { codigo: p.codigo });
   }
   function closeModal() {
     var modal = $("#prop-modal"); if (!modal || modal.hidden) return;
     modal.hidden = true; document.body.style.overflow = "";
+    if (/^#CH-\d+$/i.test(location.hash) && window.history && history.replaceState) history.replaceState(null, "", location.pathname + location.search);
     if (lastFocus) lastFocus.focus();
   }
   function initModal() {
@@ -450,19 +553,17 @@
     if (!PROPS.length) return;
     var base = (location.origin && location.origin.indexOf("http") === 0) ? location.origin : "https://www.casahonorinmobiliaria.com";
     var items = PROPS.map(function (p, i) {
-      return {
-        "@type": "ListItem", "position": i + 1,
-        "item": {
-          "@type": "Product",
-          "name": p.titulo + " — " + p.sector + ", " + p.ciudad,
-          "image": base + "/" + p.foto,
-          "sku": p.codigo,
-          "category": p.tipo,
-          "offers": { "@type": "Offer", "price": String(p.precio || 0), "priceCurrency": "COP", "availability": "https://schema.org/InStock", "url": base + "/#propiedades" }
-        }
+      var item = {
+        "@type": "Product",
+        "name": p.titulo + " — " + p.sector + ", " + p.ciudad,
+        "sku": p.codigo,
+        "category": p.tipo,
+        "offers": { "@type": "Offer", "price": String(p.precio || 0), "priceCurrency": "COP", "availability": "https://schema.org/InStock", "url": base + "/#" + p.codigo }
       };
+      var foto = fotosDe(p)[0]; if (foto) item.image = base + "/" + foto;
+      return { "@type": "ListItem", "position": i + 1, "item": item };
     });
-    var json = { "@context": "https://schema.org", "@type": "ItemList", "name": "Propiedades destacadas — CASAHONOR", "itemListElement": items };
+    var json = { "@context": "https://schema.org", "@type": "ItemList", "name": "Inmuebles en venta — CASAHONOR", "itemListElement": items };
     var s = document.createElement("script");
     s.type = "application/ld+json";
     s.textContent = JSON.stringify(json);
@@ -471,10 +572,10 @@
 
   /* ---------- init ---------- */
   function boot() {
-    [renderCatalog, fillData, initHero, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
+    [renderCatalog, fillData, initHero, buildSearchOptions, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
      function () { initForm("contact-form", msgContacto); },
      function () { initForm("ownform", msgPropietario); },
-     initVideo, initReveal, initSchema
+     initVideo, initReveal, initSchema, openFromHash
     ].forEach(function (fn) {
       try { fn(); } catch (e) { if (window.console) console.error("[CASAHONOR]", e); }
     });
