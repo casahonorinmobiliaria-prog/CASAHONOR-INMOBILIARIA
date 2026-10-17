@@ -416,16 +416,60 @@
       "precio-desc": function (a, b) { return (b.precio || 0) - (a.precio || 0); },
       "area-desc": function (a, b) { return (b.area || 0) - (a.area || 0); }
     };
-    function apply(push) {
+    // Fichas de los filtros activos: cada una se quita con un toque
+    var chipsBox = $("[data-inv-chips]"), clearBtn = $("#inv-clear");
+    function optText(sel) { var o = sel.options[sel.selectedIndex]; return o ? o.text : ""; }
+    function renderChips(s) {
+      $$(".inv-chip", chipsBox).forEach(function (c) { c.remove(); });
+      var chips = [];
+      if (s.q) chips.push(["q", "“" + s.q + "”"]);
+      if (s.tipo) chips.push(["tipo", optText(f.tipo)]);
+      if (s.sector) chips.push(["sector", s.sector]);
+      if (s.precio) chips.push(["precio", optText(f.precio)]);
+      if (s.hab) chips.push(["hab", optText(f.hab) + " hab."]);
+      if (s.fotos) chips.push(["fotos", "Con fotos"]);
+      chips.forEach(function (c) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "inv-chip"; b.setAttribute("data-k", c[0]);
+        b.setAttribute("aria-label", "Quitar filtro: " + c[1]);
+        b.innerHTML = esc(c[1]) + '<span aria-hidden="true">✕</span>';
+        chipsBox.insertBefore(b, clearBtn);
+      });
+    }
+    chipsBox.addEventListener("click", function (e) {
+      var b = e.target.closest(".inv-chip"); if (!b) return;
+      var k = b.getAttribute("data-k");
+      if (k === "fotos") f.fotos.checked = false; else f[k].value = "";
+      apply(true, true);
+      var next = $(".inv-chip", chipsBox) || f.q; next.focus({ preventScroll: true });
+    });
+
+    // Entrada escalonada de las tarjetas que aparecen (solo las primeras, sin rebote)
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function reveal(list) {
+      if (reduce) return;
+      list.slice(0, 9).forEach(function (c, i) {
+        c.classList.remove("is-new"); void c.offsetWidth;
+        c.style.setProperty("--i", i);
+        c.classList.add("is-new");
+      });
+    }
+
+    var antes = [];
+    function apply(push, animar) {
       var s = state();
       var list = cards.slice();
       if (ORDEN[s.orden]) list.sort(function (x, y) { return ORDEN[s.orden](byCode[x.dataset.codigo], byCode[y.dataset.codigo]); });
-      var shown = 0;
+      var shown = 0, visibles = [];
       list.forEach(function (c) {
         var ok = matches(byCode[c.dataset.codigo], s);
-        c.hidden = !ok; if (ok) shown++;
+        c.hidden = !ok; if (ok) { shown++; visibles.push(c); }
         grid.appendChild(c);
       });
+      var cambio = visibles.length !== antes.length || visibles.some(function (c, i) { return c !== antes[i]; });
+      if (animar && cambio) reveal(visibles);
+      antes = visibles;
+      renderChips(s);
       $("[data-inv-shown]").textContent = shown;
       $("[data-inv-label]").textContent = shown === 1 ? "inmueble" : "inmuebles";
       $("#inv-empty").hidden = shown > 0;
@@ -442,14 +486,19 @@
         history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + (/^#CH-\d+$/i.test(location.hash) ? location.hash : ""));
       }
     }
-    function reset() { form.reset(); f.orden.value = ""; apply(true); f.q.focus(); }
+    function reset() { form.reset(); f.orden.value = ""; apply(true, true); f.q.focus(); }
 
     var t = null;
-    f.q.addEventListener("input", function () { clearTimeout(t); t = setTimeout(function () { apply(true); }, 160); });
+    f.q.addEventListener("input", function () { clearTimeout(t); t = setTimeout(function () { apply(true, true); }, 220); });
     [f.tipo, f.sector, f.precio, f.hab, f.fotos, f.orden].forEach(function (el) {
-      el.addEventListener("change", function () { apply(true); track("filtrar_inmuebles", { filtro: el.name, valor: el.type === "checkbox" ? String(el.checked) : el.value }); });
+      el.addEventListener("change", function () { apply(true, true); track("filtrar_inmuebles", { filtro: el.name, valor: el.type === "checkbox" ? String(el.checked) : el.value }); });
     });
-    form.addEventListener("submit", function (e) { e.preventDefault(); apply(true); });
+    form.addEventListener("submit", function (e) { e.preventDefault(); apply(true, true); });
+    // Sombra de la barra solo cuando queda fija bajo el encabezado
+    var sentinel = $(".inv-sentinel"), barEl = $(".inv-bar");
+    if (sentinel && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { barEl.classList.toggle("is-stuck", !en[0].isIntersecting); }, { rootMargin: "-73px 0px 0px 0px" }).observe(sentinel);
+    }
     $("#inv-clear").addEventListener("click", reset);
     $$("[data-inv-reset]").forEach(function (b) { b.addEventListener("click", reset); });
     var tog = $(".inv-bar__toggle"), bar = $(".inv-bar");
@@ -458,7 +507,7 @@
       tog.setAttribute("aria-expanded", open ? "true" : "false");
     });
     $$("[data-detail]", grid).forEach(function (b) { b.addEventListener("click", function () { openModal(b.getAttribute("data-detail")); }); });
-    apply(false);
+    apply(false, true);
   }
 
   // Enlace directo a una propiedad: .../#CH-005 abre su ficha

@@ -615,14 +615,19 @@ h1,h2,h3{font-family:var(--ff-h);font-weight:700;line-height:1.1;letter-spacing:
    Página de inventario (/inmuebles/): mismas tarjetas y ficha de la portada,
    con barra de filtros fija bajo el encabezado.
    ============================================================ */
-.inv-head{background:var(--ink);color:var(--on-dark);padding:clamp(1.8rem,4vw,3rem) 0 clamp(1.6rem,3.5vw,2.4rem)}
+.inv-head{position:relative;isolation:isolate;overflow:hidden;background:var(--ink);color:var(--on-dark);padding:clamp(1.8rem,4vw,3rem) 0 clamp(1.9rem,4vw,2.8rem)}
+/* foto real de un inmueble del inventario, en penumbra a la derecha */
+.inv-head__bg{position:absolute;inset:0;z-index:-1;background:url("/img/hero/casa-blanca-san-jorge.webp") 70% 38%/cover no-repeat;opacity:.42;-webkit-mask-image:linear-gradient(90deg,transparent 22%,#000 78%);mask-image:linear-gradient(90deg,transparent 22%,#000 78%)}
+.inv-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--orange) 0 96px,transparent 96px)}
 .inv-crumbs{display:flex;align-items:center;gap:.35rem;font-family:var(--ff-h);font-size:.82rem;color:var(--on-dark-soft);margin-bottom:.9rem}
 .inv-crumbs a:hover{color:var(--orange)}
 .inv-crumbs .ic{width:14px;height:14px}
 .inv-head h1{font-size:clamp(1.9rem,4.2vw,2.9rem);color:#fff}
 .inv-head__sub{color:var(--on-dark-soft);max-width:58ch;margin-top:.7rem}
 
-.inv-bar{position:sticky;top:72px;z-index:90;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 10px 24px -22px rgba(20,20,22,.6)}
+.inv-bar{position:sticky;top:72px;z-index:90;background:var(--surface);border-bottom:1px solid var(--line);transition:box-shadow .4s cubic-bezier(.2,.7,.2,1)}
+.inv-bar.is-stuck{box-shadow:0 14px 30px -18px rgba(22,23,26,.45)}
+.inv-sentinel{height:1px;margin-bottom:-1px}
 .inv-bar__in{display:flex;align-items:flex-end;gap:.8rem;padding-top:.8rem;padding-bottom:.8rem}
 .inv-q{flex:1 1 260px;display:flex;align-items:center;gap:.5rem;height:46px;padding:0 .9rem;background:var(--surface-2);border:1.5px solid var(--line-2);border-radius:var(--r-sm);transition:border-color .16s}
 .inv-q:focus-within{border-color:var(--orange)}
@@ -649,7 +654,14 @@ h1,h2,h3{font-family:var(--ff-h);font-weight:700;line-height:1.1;letter-spacing:
 .inv-list__tools{display:flex;align-items:flex-end;gap:1rem}
 .inv-sort{flex-direction:row;align-items:center;gap:.6rem}
 .inv-sort select{min-width:170px}
-.inv-clear{background:none;border:0;padding:.5rem 0;font-family:var(--ff-h);font-weight:700;font-size:.9rem;color:var(--orange-ink);border-bottom:1.5px solid rgba(165,86,10,.35)}
+.inv-chips{flex:1 1 auto;display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;min-height:34px}
+.inv-chip{display:inline-flex;align-items:center;gap:.5rem;height:34px;padding:0 .6rem 0 .85rem;border:0;border-radius:var(--r-sm);background:var(--ink);color:var(--on-dark);font-family:var(--ff-h);font-size:.82rem;font-weight:600;transition:background .25s,transform .2s;animation:chipIn .4s cubic-bezier(.2,.7,.2,1)}
+.inv-chip span{color:var(--orange);font-size:.78rem}
+.inv-chip:hover{background:var(--ink-3)}
+.inv-chip:active,.inv-bar__toggle:active,.inv-check:active{transform:translateY(1px)}
+@keyframes chipIn{from{opacity:0;transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.inv-chip{animation:none}}
+.inv-clear{background:none;border:0;padding:.5rem 0;margin-left:.3rem;font-family:var(--ff-h);font-weight:700;font-size:.9rem;color:var(--orange-ink);border-bottom:1.5px solid rgba(165,86,10,.35)}
 .inv-clear:hover{border-color:var(--orange-ink)}
 .inv-empty{margin-top:.4rem;padding:1.6rem;border:1.5px dashed var(--line-2);border-radius:var(--r);background:var(--surface-2);max-width:720px}
 .inv-empty__actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.1rem}
@@ -666,6 +678,7 @@ h1,h2,h3{font-family:var(--ff-h);font-weight:700;line-height:1.1;letter-spacing:
 }
 @media (max-width:640px){
   .inv-q{flex:1 1 0;min-width:0}
+  .inv-head__bg{opacity:.26}
   .inv-q input{font-size:16px}
   .inv-bar__more{grid-template-columns:1fr 1fr}
   .inv-list__head{align-items:flex-start;flex-direction:column}
