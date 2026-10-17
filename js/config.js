@@ -41,10 +41,11 @@ window.CASAHONOR = {
   metaPixelId: "[ID_META_PIXEL]",
 
   /* ---- Endpoint del formulario ----
-     Reemplaza por tu endpoint real (Formspree, CRM, función serverless…).
-     Mientras esté vacío o como marcador, el formulario usa WhatsApp como
-     respaldo y NO se pierde la información. */
-  formEndpoint: "[ENDPOINT_FORMULARIO]"
+     Google Apps Script "Formularios web CasaHonor" (cuenta casahonorinmobiliaria@gmail.com):
+     manda cada solicitud a administracioncasahonor@gmail.com y la guarda en la hoja
+     "Solicitudes web CasaHonor". Código en herramientas/formularios-apps-script.gs.
+     Si falla, el formulario usa WhatsApp como respaldo y NO se pierde la información. */
+  formEndpoint: "https://script.google.com/macros/s/AKfycbz1pDp1RMvZLMkIEyoDFWreKMxmBlBK-xugQ3Mttt4PCU32x0OgoxGCu6_cjuWtGNig8w/exec"
 };
 
 /* ============================================================

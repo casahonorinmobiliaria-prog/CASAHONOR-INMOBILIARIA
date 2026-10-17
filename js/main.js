@@ -468,8 +468,10 @@
       var endpoint = CFG.formEndpoint || "";
       if (/^https?:\/\//.test(endpoint)) {
         setNote("Enviando…", "");
-        fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.assign({ origen: id }, data)) })
-          .then(function (r) { if (!r.ok) throw new Error("bad"); done(); form.reset(); })
+        // text/plain evita la consulta previa (CORS) que Google Apps Script no responde
+        fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(Object.assign({ origen: id }, data)) })
+          .then(function (r) { if (!r.ok) throw new Error("bad"); return r.json(); })
+          .then(function (res) { if (!res || !res.ok) throw new Error("bad"); done(); form.reset(); })
           .catch(function () { fallbackWA(msg); });
       } else {
         fallbackWA(msg);

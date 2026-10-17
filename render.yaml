@@ -22,6 +22,22 @@ services:
     # Direcciones del WordPress anterior (oct 2026) → sección equivalente de la web nueva.
     # Lo que no esté aquí y no exista recibe 404.html (ya no se manda todo a la portada).
     routes:
+      # Archivos internos que quedaron de despliegues anteriores: no se muestran
+      - type: redirect
+        source: /DATOS-A-VERIFICAR.md
+        destination: /
+      - type: redirect
+        source: /FOTOS-REQUERIDAS.md
+        destination: /
+      - type: redirect
+        source: /README.md
+        destination: /
+      - type: redirect
+        source: /render.yaml
+        destination: /
+      - type: redirect
+        source: /herramientas/*
+        destination: /
       - type: redirect
         source: /propiedades/*
         destination: /#propiedades
