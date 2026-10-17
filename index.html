@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="css/styles.css?v=20261017c">
+  <link rel="stylesheet" href="css/styles.css?v=20261018">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org","@type":"RealEstateAgent","name":"CASAHONOR Inmobiliaria",
@@ -79,7 +79,7 @@
       </a>
       <nav class="nav" aria-label="Principal">
         <a href="#top">Inicio</a>
-        <a href="#propiedades">Propiedades</a>
+        <a href="/inmuebles/">Propiedades</a>
         <a href="#nosotros">Nosotros</a>
       </nav>
       <a class="btn btn--primary hd__cta" data-wa="Hola, quiero información sobre sus servicios inmobiliarios." href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
@@ -87,7 +87,7 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" hidden>
       <a href="#top">Inicio</a>
-      <a href="#propiedades">Propiedades</a>
+      <a href="/inmuebles/">Propiedades</a>
       <a href="#fuerza-publica">Fuerza Pública</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
@@ -178,7 +178,7 @@
             </ul>
             <select id="f-precio" class="hsearch__native" tabindex="-1" aria-hidden="true"><option value="">Sin límite</option><option value="100000000">Hasta $100M</option><option value="200000000">Hasta $200M</option><option value="300000000">Hasta $300M</option><option value="500000000">Hasta $500M</option></select>
           </div>
-          <a class="hsearch__go" href="#propiedades">Buscar <svg class="ic"><use href="#ic-search"/></svg></a>
+          <a class="hsearch__go" href="/inmuebles/" data-inv-link>Buscar <svg class="ic"><use href="#ic-search"/></svg></a>
         </form>
     </div>
 
@@ -187,13 +187,13 @@
       <div class="wrap">
         <div class="s__head">
           <div><h2 id="prop-h">Propiedades destacadas</h2><p class="s__sub">Una selección de nuestros inmuebles en Neiva y el Huila.</p></div>
-          <button type="button" class="s__link" data-ver-todas hidden>Ver todo el inventario <svg class="ic"><use href="#ic-arrow"/></svg></button>
+          <a class="s__link" href="/inmuebles/" data-ver-todas data-inv-link>Ver todo el inventario <svg class="ic"><use href="#ic-arrow"/></svg></a>
         </div>
         <!-- Propiedades: se generan dinamicamente desde js/config.js (window.CASAHONOR_PROPIEDADES) -->
         <div id="prop-feat-host"></div>
         <div class="cards" id="prop-grid" aria-live="polite"></div>
         <p class="cards__empty" id="prop-empty" hidden>Ninguna propiedad coincide con esos filtros. Prueba con otro precio o tipo de inmueble, o <a data-wa="Hola, busco una propiedad con estas características y no la vi en la web. ¿Me ayudan?" href="#" target="_blank" rel="noopener">escríbenos por WhatsApp</a> con lo que buscas.</p>
-        <div class="cards__more"><button type="button" class="btn btn--ghost" id="ver-todas" data-ver-todas hidden>Ver las <span data-total></span> propiedades</button></div>
+        <div class="cards__more"><a class="btn btn--ghost" id="ver-todas" href="/inmuebles/" data-ver-todas data-inv-link>Ver las <span data-total></span> propiedades</a></div>
         <p class="cards__note">¿Buscas algo que no está aquí? <a data-wa="Hola, busco una propiedad y no la encontré en la web. ¿Me ayudan?" href="#" target="_blank" rel="noopener">Cuéntanos qué necesitas</a> y te ayudamos a encontrarlo.</p>
       </div>
     </section>
@@ -470,7 +470,7 @@
         <p>Tu hogar, nuestro compromiso. Compra y venta de inmuebles en Neiva y el Huila.</p>
       </div>
       <nav class="ft__nav" aria-label="Pie de página">
-        <a href="#propiedades">Propiedades</a><a href="#fuerza-publica">Fuerza Pública</a>
+        <a href="/inmuebles/">Propiedades</a><a href="#fuerza-publica">Fuerza Pública</a>
         <a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
       </nav>
       <div class="ft__legal-links">
@@ -493,7 +493,7 @@
   <nav class="mbar" aria-label="Acciones rápidas">
     <a data-wa="Hola, quiero información sobre sus servicios inmobiliarios." href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#ic-chat"/></svg>WhatsApp</a>
     <a data-tel href="#"><svg class="ic"><use href="#ic-phone"/></svg>Llamar</a>
-    <a href="#propiedades"><svg class="ic"><use href="#ic-home"/></svg>Propiedades</a>
+    <a href="/inmuebles/"><svg class="ic"><use href="#ic-home"/></svg>Propiedades</a>
   </nav>
 
   <div class="modal" id="prop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -504,7 +504,7 @@
     </div>
   </div>
 
-  <script src="js/config.js?v=20261017c"></script>
-  <script src="js/main.js?v=20261017c" defer></script>
+  <script src="js/config.js?v=20261018"></script>
+  <script src="js/main.js?v=20261018" defer></script>
 </body>
 </html>

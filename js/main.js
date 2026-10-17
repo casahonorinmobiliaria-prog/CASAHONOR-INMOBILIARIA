@@ -186,7 +186,8 @@
 
   // Fotos de cada inmueble: img/inmuebles/<código>/01.webp (galería) y 01-800.webp (tarjeta)
   function fotosDe(p) {
-    var n = parseInt(p.fotos, 10) || 0, dir = "img/inmuebles/" + String(p.codigo).toLowerCase() + "/", out = [];
+    // Ruta desde la raíz: sirve igual en la portada y en /inmuebles/
+    var n = parseInt(p.fotos, 10) || 0, dir = "/img/inmuebles/" + String(p.codigo).toLowerCase() + "/", out = [];
     for (var i = 1; i <= n; i++) out.push(dir + (i < 10 ? "0" : "") + i + ".webp");
     return out;
   }
@@ -339,42 +340,127 @@
     shown.forEach(function (c) { c.hidden = false; });
     var empty = $("#prop-empty");
     if (empty) empty.hidden = (matched.length > 0 || featMatch);
-    var faltan = matched.length > shown.length;
-    $$("[data-ver-todas]").forEach(function (b) { b.hidden = !faltan; });
+    // Los enlaces al inventario completo llevan los filtros elegidos
+    $$("[data-ver-todas]").forEach(function (b) { b.hidden = false; });
+    syncInvLinks();
     var total = $("[data-total]"); if (total) total.textContent = matched.length + (featMatch ? 1 : 0);
-  }
-
-  // "Ver todo el inventario": muestra el resto de tarjetas y lleva el foco a la primera nueva
-  function verTodas(e) {
-    var grid = $("#prop-grid"); if (!grid) return;
-    var antes = $$(".card:not([hidden])", grid);
-    showingAll = true;
-    applyFilters();
-    var nuevas = $$(".card:not([hidden])", grid).filter(function (c) { return antes.indexOf(c) < 0; });
-    nuevas.forEach(function (c, i) {
-      c.classList.remove("is-new"); void c.offsetWidth;
-      c.style.setProperty("--i", Math.min(i, 8));
-      c.classList.add("is-new");
-    });
-    var first = nuevas[0] && $("[data-detail]", nuevas[0]);
-    if (first) {
-      first.focus({ preventScroll: true });
-      if (e && e.currentTarget && e.currentTarget.id !== "ver-todas") {
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        nuevas[0].scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
-      }
-    }
-    track("ver_todas_propiedades");
   }
 
   function initCatalog() {
     if (!$("#prop-grid")) return;
     $$("#filters select").forEach(function (s) { s.addEventListener("change", function () { showingAll = false; applyFilters(); }); });
-    $$("[data-ver-todas]").forEach(function (b) { b.addEventListener("click", verTodas); });
+    $$("[data-ver-todas]").forEach(function (b) { b.addEventListener("click", function () { track("ver_todas_propiedades"); }); });
     // Botones "Ver propiedad" de la destacada y de la grilla
     $$("[data-detail]").forEach(function (b) { b.addEventListener("click", function () { openModal(b.getAttribute("data-detail")); }); });
     applyFilters();
   }
+  // Enlace a la página de inventario con los filtros elegidos en la portada
+  function invHref() {
+    var q = [], tipo = val("#f-tipo"), precio = val("#f-precio");
+    if (tipo) q.push("tipo=" + encodeURIComponent(tipo));
+    if (precio) q.push("precio=" + encodeURIComponent(precio));
+    return "/inmuebles/" + (q.length ? "?" + q.join("&") : "");
+  }
+  function syncInvLinks() { $$("[data-inv-link]").forEach(function (a) { a.setAttribute("href", invHref()); }); }
+
+  /* ---------- página de inventario (/inmuebles/) ---------- */
+  function norm(s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function initInventario() {
+    var grid = $("#inv-grid"), form = $("#inv-filters"); if (!grid || !form) return;
+    var byCode = {}; PROPS.forEach(function (p) { byCode[p.codigo] = p; });
+    // Orden recomendado: la destacada y la vitrina primero, luego con fotos, luego "Fotos pronto"
+    var base = PROPS.slice().sort(function (a, b) {
+      return ((b.destacada ? 1 : 0) - (a.destacada ? 1 : 0)) || (rango(a) - rango(b)) || (posVitrina(a) - posVitrina(b)) || ((a.precio || 0) - (b.precio || 0));
+    });
+    grid.innerHTML = base.map(cardHtml).join("");
+    var cards = $$(".card", grid);
+
+    var tipos = [], sectores = [];
+    PROPS.forEach(function (p) {
+      if (p.tipo && tipos.indexOf(p.tipo) < 0) tipos.push(p.tipo);
+      if (p.sector && sectores.indexOf(p.sector) < 0) sectores.push(p.sector);
+    });
+    sectores.sort(function (a, b) { return a.localeCompare(b, "es"); });
+    $("#inv-tipo").innerHTML += Object.keys(TIPOS).filter(function (t) { return tipos.indexOf(t) >= 0; })
+      .map(function (t) { return '<option value="' + t + '">' + TIPOS[t] + '</option>'; }).join("");
+    $("#inv-sector").innerHTML += sectores.map(function (s) { return '<option value="' + esc(s) + '">' + esc(s) + '</option>'; }).join("");
+
+    var f = { q: $("#inv-q"), tipo: $("#inv-tipo"), sector: $("#inv-sector"), precio: $("#inv-precio"), hab: $("#inv-hab"), fotos: $("#inv-fotos"), orden: $("#inv-orden") };
+    // Filtros que llegan en la dirección (desde la portada o un enlace compartido)
+    var params = new URLSearchParams(location.search);
+    ["q", "tipo", "sector", "precio", "hab", "orden"].forEach(function (k) {
+      var v = params.get(k); if (v == null) return;
+      if (f[k].tagName === "SELECT" && !$$("option", f[k]).some(function (o) { return o.value === v; })) return;
+      f[k].value = v;
+    });
+    if (params.get("fotos") === "1") f.fotos.checked = true;
+
+    function state() {
+      return { q: f.q.value.trim(), tipo: f.tipo.value, sector: f.sector.value, precio: parseInt(f.precio.value || "0", 10), hab: parseInt(f.hab.value || "0", 10), fotos: f.fotos.checked, orden: f.orden.value };
+    }
+    function matches(p, s) {
+      if (s.tipo && p.tipo !== s.tipo) return false;
+      if (s.sector && p.sector !== s.sector) return false;
+      if (s.precio && (p.precio || 0) > s.precio) return false;
+      if (s.hab && (p.habitaciones || 0) < s.hab) return false;
+      if (s.fotos && !fotosDe(p).length) return false;
+      if (s.q) {
+        var hay = norm([p.codigo, p.titulo, p.sector, p.ciudad, p.tipoLabel].join(" "));
+        var ok = norm(s.q).split(/\s+/).every(function (w) { return hay.indexOf(w) >= 0; });
+        if (!ok) return false;
+      }
+      return true;
+    }
+    var ORDEN = {
+      "precio-asc": function (a, b) { return (a.precio || 0) - (b.precio || 0); },
+      "precio-desc": function (a, b) { return (b.precio || 0) - (a.precio || 0); },
+      "area-desc": function (a, b) { return (b.area || 0) - (a.area || 0); }
+    };
+    function apply(push) {
+      var s = state();
+      var list = cards.slice();
+      if (ORDEN[s.orden]) list.sort(function (x, y) { return ORDEN[s.orden](byCode[x.dataset.codigo], byCode[y.dataset.codigo]); });
+      var shown = 0;
+      list.forEach(function (c) {
+        var ok = matches(byCode[c.dataset.codigo], s);
+        c.hidden = !ok; if (ok) shown++;
+        grid.appendChild(c);
+      });
+      $("[data-inv-shown]").textContent = shown;
+      $("[data-inv-label]").textContent = shown === 1 ? "inmueble" : "inmuebles";
+      $("#inv-empty").hidden = shown > 0;
+      var nfil = [s.tipo, s.sector, s.precio, s.hab, s.fotos].filter(Boolean).length;
+      var badge = $("[data-inv-nfil]"); badge.textContent = nfil; badge.hidden = !nfil;
+      $("#inv-clear").hidden = !(nfil || s.q);
+      [f.tipo, f.sector, f.precio, f.hab].forEach(function (el) { el.classList.toggle("is-set", !!el.value); });
+      if (push && window.history && history.replaceState) {
+        var q = new URLSearchParams();
+        if (s.q) q.set("q", s.q);
+        ["tipo", "sector", "precio", "hab", "orden"].forEach(function (k) { if (f[k].value) q.set(k, f[k].value); });
+        if (s.fotos) q.set("fotos", "1");
+        var qs = q.toString();
+        history.replaceState(null, "", location.pathname + (qs ? "?" + qs : "") + (/^#CH-\d+$/i.test(location.hash) ? location.hash : ""));
+      }
+    }
+    function reset() { form.reset(); f.orden.value = ""; apply(true); f.q.focus(); }
+
+    var t = null;
+    f.q.addEventListener("input", function () { clearTimeout(t); t = setTimeout(function () { apply(true); }, 160); });
+    [f.tipo, f.sector, f.precio, f.hab, f.fotos, f.orden].forEach(function (el) {
+      el.addEventListener("change", function () { apply(true); track("filtrar_inmuebles", { filtro: el.name, valor: el.type === "checkbox" ? String(el.checked) : el.value }); });
+    });
+    form.addEventListener("submit", function (e) { e.preventDefault(); apply(true); });
+    $("#inv-clear").addEventListener("click", reset);
+    $$("[data-inv-reset]").forEach(function (b) { b.addEventListener("click", reset); });
+    var tog = $(".inv-bar__toggle"), bar = $(".inv-bar");
+    if (tog) tog.addEventListener("click", function () {
+      var open = bar.classList.toggle("is-open");
+      tog.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    $$("[data-detail]", grid).forEach(function (b) { b.addEventListener("click", function () { openModal(b.getAttribute("data-detail")); }); });
+    apply(false);
+  }
+
   // Enlace directo a una propiedad: .../#CH-005 abre su ficha
   function openFromHash() {
     var m = /^#(CH-\d+)$/i.exec(location.hash);
@@ -611,7 +697,7 @@
 
   /* ---------- init ---------- */
   function boot() {
-    [initAnalytics, renderCatalog, fillData, initHero, buildSearchOptions, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
+    [initAnalytics, renderCatalog, initInventario, fillData, initHero, buildSearchOptions, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
      function () { initForm("contact-form", msgContacto); },
      function () { initForm("ownform", msgPropietario); },
      initVideo, initReveal, initSchema, openFromHash

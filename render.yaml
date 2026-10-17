@@ -3,7 +3,7 @@ services:
     name: casahonor-inmobiliaria
     runtime: static
     # Solo se publica lo que ve el visitante: notas internas, herramientas y render.yaml quedan fuera.
-    buildCommand: mkdir -p dist && cp -r index.html 404.html robots.txt sitemap.xml css js img media legal dist/
+    buildCommand: mkdir -p dist && cp -r index.html 404.html robots.txt sitemap.xml css js img media legal inmuebles dist/
     staticPublishPath: ./dist
     pullRequestPreviewsEnabled: true
     headers:
@@ -40,16 +40,16 @@ services:
         destination: /
       - type: redirect
         source: /propiedades/*
-        destination: /#propiedades
+        destination: /inmuebles/
       - type: redirect
         source: /propiedades
-        destination: /#propiedades
+        destination: /inmuebles/
       - type: redirect
         source: /property/*
-        destination: /#propiedades
+        destination: /inmuebles/
       - type: redirect
         source: /property
-        destination: /#propiedades
+        destination: /inmuebles/
       - type: redirect
         source: /agentes/*
         destination: /#nosotros
