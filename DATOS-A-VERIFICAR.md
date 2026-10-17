@@ -43,6 +43,10 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [x] (oct 2026) Fotos publicadas de 17 inmuebles (129 fotos). Destacada: CH-024 Luis Ignacio Andrade.
       Vitrina en este orden: CH-002, CH-032, CH-025 (los tres de Bosques de San Luis), CH-030, CH-031, CH-011.
       CH-025 se publica como apartamento (la hoja decía casa).
+- [x] (17 oct 2026) Nuevos en la hoja y publicados con "Fotos pronto": CH-033 Casa en Villa Magdalena ($250M)
+      y CH-034 Apartamento en Conjunto San Telmo ($175M). La carpeta de Drive de CH-033 está vacía y CH-034 no tiene carpeta.
+- [x] (17 oct 2026) Parqueadero "privado" (CH-004, CH-029) y "M y carro" (CH-031) se publican como 1 parqueadero.
+- [ ] CH-033: la hoja dice "Parqueadero: para moto"; no se publica parqueadero.
 - [ ] CH-024: la hoja dice "Parqueadero: 1 moto"; no se publica parqueadero para no confundir con carro.
 - [ ] CH-032 y CH-025 van en primera fila con la placa "Fotos pronto": faltan sus fotos en Drive.
 - [ ] Revisar en Drive (lo vi al ordenar las fotos):

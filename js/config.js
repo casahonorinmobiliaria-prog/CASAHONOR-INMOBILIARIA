@@ -68,7 +68,7 @@ window.CASAHONOR = {
 
 window.CASAHONOR_PROPIEDADES = [
   { codigo:"CH-002", titulo:"Apartamento en Bosques de San Luis, Torres Azules", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de San Luis", precio:110000000, habitaciones:3, "baños":1, area:48.8, parqueadero:1, estrato:2, vitrina:1, fotos:8 },
-  { codigo:"CH-004", titulo:"Apartamento en Bosques de Ciprés", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de Ciprés", precio:100000000, habitaciones:3, "baños":1, area:46.5, parqueadero:0, estrato:2, fotos:0 },
+  { codigo:"CH-004", titulo:"Apartamento en Bosques de Ciprés", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de Ciprés", precio:100000000, habitaciones:3, "baños":1, area:46.5, parqueadero:1, estrato:2, fotos:0 },
   { codigo:"CH-005", titulo:"Casa en Oasis", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Oasis", precio:150000000, habitaciones:3, "baños":1, area:78, parqueadero:1, estrato:2, fotos:8 },
   { codigo:"CH-006", titulo:"Casa en Acacias 2ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Acacias 2ª etapa", precio:165000000, habitaciones:4, "baños":2, area:63, parqueadero:1, estrato:2, fotos:7 },
   { codigo:"CH-007", titulo:"Casa en Acacias 1ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Acacias 1ª etapa", precio:180000000, habitaciones:9, "baños":3, area:84, parqueadero:1, estrato:2, fotos:5 },
@@ -94,8 +94,11 @@ window.CASAHONOR_PROPIEDADES = [
   { codigo:"CH-026", titulo:"Casa en Hacienda Santa Bárbara", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Hacienda Santa Bárbara", precio:270000000, habitaciones:3, "baños":3, area:98.4, parqueadero:1, estrato:0, fotos:0 },
   { codigo:"CH-027", titulo:"Casa en Prados del Sauce", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Prados del Sauce", precio:148000000, habitaciones:3, "baños":1, area:50.32, parqueadero:1, estrato:2, fotos:10 },
   { codigo:"CH-028", titulo:"Casa en San Luis de la Paz", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"San Luis de la Paz", precio:155000000, habitaciones:3, "baños":1, area:84, parqueadero:0, estrato:2, fotos:0 },
-  { codigo:"CH-029", titulo:"Apartamento en Altico, edificio El Mundo", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Altico", precio:320000000, habitaciones:4, "baños":1, area:80, parqueadero:0, estrato:4, fotos:0 },
+  { codigo:"CH-029", titulo:"Apartamento en Altico, edificio El Mundo", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Altico", precio:320000000, habitaciones:4, "baños":1, area:80, parqueadero:1, estrato:4, fotos:0 },
   { codigo:"CH-030", titulo:"Casa en San Jorge 1ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"San Jorge 1ª etapa", precio:205000000, habitaciones:3, "baños":1, area:84, parqueadero:0, estrato:2, vitrina:4, fotos:8 },
-  { codigo:"CH-031", titulo:"Casa en San Jorge 1ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"San Jorge 1ª etapa", precio:220000000, habitaciones:3, "baños":1, area:84, parqueadero:0, estrato:2, vitrina:5, fotos:8 },
-  { codigo:"CH-032", titulo:"Apartamento en Bosques de San Luis, 5º piso", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de San Luis", precio:95000000, habitaciones:3, "baños":1, area:43.88, parqueadero:2, estrato:2, vitrina:2, fotos:0 }
+  { codigo:"CH-031", titulo:"Casa en San Jorge 1ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"San Jorge 1ª etapa", precio:220000000, habitaciones:3, "baños":1, area:84, parqueadero:1, estrato:2, vitrina:5, fotos:8 },
+  { codigo:"CH-032", titulo:"Apartamento en Bosques de San Luis, 5º piso", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de San Luis", precio:95000000, habitaciones:3, "baños":1, area:43.88, parqueadero:2, estrato:2, vitrina:2, fotos:0 },
+  // La hoja dice "Parqueadero: para moto"; no se publica parqueadero para no confundir con carro.
+  { codigo:"CH-033", titulo:"Casa en Villa Magdalena", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Villa Magdalena", precio:250000000, habitaciones:2, "baños":1, area:0, parqueadero:0, estrato:2, fotos:0 },
+  { codigo:"CH-034", titulo:"Apartamento en Conjunto San Telmo", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Conjunto San Telmo", precio:175000000, habitaciones:3, "baños":2, area:65.72, parqueadero:1, estrato:2, fotos:0 }
 ];

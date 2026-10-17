@@ -2,8 +2,9 @@ services:
   - type: web
     name: casahonor-inmobiliaria
     runtime: static
-    buildCommand: ""
-    staticPublishPath: .
+    # Solo se publica lo que ve el visitante: notas internas, herramientas y render.yaml quedan fuera.
+    buildCommand: mkdir -p dist && cp -r index.html 404.html robots.txt sitemap.xml css js img media legal dist/
+    staticPublishPath: ./dist
     pullRequestPreviewsEnabled: true
     headers:
       - path: /*
@@ -12,6 +13,12 @@ services:
       - path: /*
         name: X-Content-Type-Options
         value: nosniff
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=31536000
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
     # Direcciones del WordPress anterior (oct 2026) → sección equivalente de la web nueva.
     # Lo que no esté aquí y no exista recibe 404.html (ya no se manda todo a la portada).
     routes:
