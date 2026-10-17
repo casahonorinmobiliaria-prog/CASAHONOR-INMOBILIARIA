@@ -36,9 +36,11 @@ window.CASAHONOR = {
   gerenteNombre: "",
   gerenteCargo:  "",
 
-  /* ---- Analítica (rellenar cuando existan) ---- */
-  gaId:        "[ID_GOOGLE_ANALYTICS]",
-  metaPixelId: "[ID_META_PIXEL]",
+  /* ---- Analítica ----
+     GA4: propiedad "CasaHonor Inmobiliaria" (cuenta victorcastanocasahonor@gmail.com, con Google Ads vinculado).
+     Meta: conjunto de datos "Casahonor Inmobiliaria" del portafolio comercial Casahonor Inmobiliaria. */
+  gaId:        "G-MZWKYY18CQ",
+  metaPixelId: "1880864079277856",
 
   /* ---- Endpoint del formulario ----
      Google Apps Script "Formularios web CasaHonor" (cuenta casahonorinmobiliaria@gmail.com):

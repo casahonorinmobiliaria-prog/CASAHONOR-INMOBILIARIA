@@ -20,10 +20,44 @@
     if (!n) return "Consultar";
     return "$" + n.toLocaleString("es-CO");
   }
-  function track(event, data) {
-    // Medición: se integra con GA/Meta cuando existan (ver [ID_*] en config.js)
+  /* ---------- medición: Google Analytics 4 y Meta Pixel ----------
+     Se cargan solo si config.js trae IDs reales (G-XXXX / número de pixel). */
+  var GA_ID = /^G-[A-Z0-9]+$/.test(CFG.gaId || "") ? CFG.gaId : "";
+  var PIXEL_ID = /^\d{6,}$/.test(CFG.metaPixelId || "") ? CFG.metaPixelId : "";
+  // Eventos propios → eventos estándar de Meta (los que sirven para campañas)
+  var META_EVENTOS = { whatsapp_click: "Contact", llamada_click: "Contact", form_submit: "Lead", ver_propiedad: "ViewContent" };
+
+  function loadScript(src) {
+    var s = document.createElement("script"); s.async = true; s.src = src;
+    document.head.appendChild(s);
+  }
+  function initAnalytics() {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(Object.assign({ event: event }, data || {}));
+    if (GA_ID) {
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", GA_ID);
+      loadScript("https://www.googletagmanager.com/gtag/js?id=" + GA_ID);
+    }
+    if (PIXEL_ID && !window.fbq) {
+      var q = window.fbq = function () { q.callMethod ? q.callMethod.apply(q, arguments) : q.queue.push(arguments); };
+      if (!window._fbq) window._fbq = q;
+      q.push = q; q.loaded = true; q.version = "2.0"; q.queue = [];
+      window.fbq("init", PIXEL_ID);
+      window.fbq("track", "PageView");
+      loadScript("https://connect.facebook.net/en_US/fbevents.js");
+    }
+  }
+  function track(event, data) {
+    data = data || {};
+    if (GA_ID && window.gtag) window.gtag("event", event, data);
+    else { window.dataLayer = window.dataLayer || []; window.dataLayer.push(Object.assign({ event: event }, data)); }
+    if (PIXEL_ID && window.fbq) {
+      var std = META_EVENTOS[event];
+      if (event === "ver_propiedad") window.fbq("track", "ViewContent", { content_ids: [data.codigo], content_type: "home_listing" });
+      else if (std) window.fbq("track", std, data);
+      else window.fbq("trackCustom", event, data);
+    }
   }
 
   /* ---------- inyección de datos de contacto ---------- */
@@ -33,7 +67,10 @@
       el.addEventListener("click", function () { track("whatsapp_click", { origen: el.getAttribute("data-wa").slice(0, 40) }); });
     });
     var tel = (CFG.telefonos && CFG.telefonos[0]) ? CFG.telefonos[0].replace(/[^0-9+]/g, "") : "";
-    $$("[data-tel]").forEach(function (el) { el.setAttribute("href", "tel:" + tel); });
+    $$("[data-tel]").forEach(function (el) {
+      el.setAttribute("href", "tel:" + tel);
+      el.addEventListener("click", function () { track("llamada_click"); });
+    });
     var pMain = $("[data-phone-main]"); if (pMain && CFG.telefonos) pMain.textContent = CFG.telefonos[0];
     var phones = $("[data-phones]"); if (phones && CFG.telefonos) phones.textContent = CFG.telefonos.join(" · ");
     var email = $("[data-email]"); if (email && CFG.correo) { email.textContent = CFG.correo; email.setAttribute("href", "mailto:" + CFG.correo); }
@@ -574,7 +611,7 @@
 
   /* ---------- init ---------- */
   function boot() {
-    [renderCatalog, fillData, initHero, buildSearchOptions, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
+    [initAnalytics, renderCatalog, fillData, initHero, buildSearchOptions, initDropdowns, initMenu, initCatalog, initGalleries, initModal,
      function () { initForm("contact-form", msgContacto); },
      function () { initForm("ownform", msgPropietario); },
      initVideo, initReveal, initSchema, openFromHash
