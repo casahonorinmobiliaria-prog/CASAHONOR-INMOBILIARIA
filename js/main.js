@@ -144,6 +144,19 @@
         btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
         dd.classList.toggle("is-open", willOpen);
       });
+      // Teclado: flechas para moverse, Enter o espacio para elegir, Escape para cerrar
+      opts.forEach(function (op) { op.setAttribute("tabindex", "-1"); });
+      btn.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (menu.hidden) btn.click(); ($(".is-sel", menu) || opts[0]).focus(); }
+      });
+      menu.addEventListener("keydown", function (e) {
+        var i = opts.indexOf(document.activeElement);
+        if (e.key === "ArrowDown") { e.preventDefault(); opts[Math.min(opts.length - 1, i + 1)].focus(); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); opts[Math.max(0, i - 1)].focus(); }
+        else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (i >= 0) { opts[i].click(); btn.focus(); } }
+        else if (e.key === "Escape" || e.key === "Tab") { closeAll(null); if (e.key === "Escape") btn.focus(); }
+      });
+      btn.addEventListener("click", function () { if (!menu.hidden) setTimeout(function () { ($(".is-sel", menu) || opts[0]).focus({ preventScroll: true }); }, 0); });
       opts.forEach(function (op) {
         op.addEventListener("click", function (e) {
           e.stopPropagation();
@@ -542,6 +555,15 @@
     }
     if (prev) prev.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); show(idx - 1); });
     if (next) next.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); show(idx + 1); });
+    // En celular las fotos se pasan deslizando el dedo
+    var x0 = null, y0 = 0;
+    root.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") { x0 = e.clientX; y0 = e.clientY; } });
+    root.addEventListener("pointerup", function (e) {
+      if (x0 === null) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) show(idx + (dx < 0 ? 1 : -1));
+    });
+    root.addEventListener("pointercancel", function () { x0 = null; });
   }
   function initGalleries() { $$("[data-gallery]").forEach(function (g) { wireGallery(g, false); }); }
 
@@ -561,7 +583,7 @@
     var visitaMsg = "Hola, quiero agendar una visita a la propiedad código " + p.codigo + " (" + p.titulo + ", " + p.sector + ").";
     var acciones = fotos.length
       ? '<a class="btn btn--primary" href="' + waLink(visitaMsg) + '" target="_blank" rel="noopener">Agendar visita</a>' +
-        '<a class="btn btn--ghost" href="' + waLink(infoMsg(p)) + '" target="_blank" rel="noopener">Consultar por WhatsApp</a>'
+        '<a class="btn btn--ghost" href="' + waLink(infoMsg(p)) + '" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-chat"/></svg>WhatsApp</a>'
       : '<a class="btn btn--primary" href="' + waLink(fotosMsg(p)) + '" target="_blank" rel="noopener">Pedir fotos por WhatsApp</a>' +
         '<a class="btn btn--ghost" href="' + waLink(visitaMsg) + '" target="_blank" rel="noopener">Agendar visita</a>';
     // Similares: mismo tipo, precio más cercano
@@ -625,14 +647,20 @@
   function initForm(id, buildMessage) {
     var form = $("#" + id); if (!form) return;
     var note = $(".formnote", form);
+    // Al corregir un campo se quita su marca de error
+    form.addEventListener("input", function (e) { if (e.target.getAttribute("aria-invalid") === "true" && e.target.validity.valid) e.target.setAttribute("aria-invalid", "false"); });
+    form.addEventListener("change", function (e) { if (e.target.getAttribute && e.target.getAttribute("aria-invalid") === "true" && e.target.validity.valid) e.target.setAttribute("aria-invalid", "false"); });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       // anti-spam (honeypot): si está lleno, simulamos éxito y no enviamos
       var hp = $(".hp", form);
       if (hp && hp.value) { done(); return; }
       if (!form.checkValidity()) {
+        // Marca cada campo con error junto al campo y lleva el foco al primero
+        $$("input,select,textarea", form).forEach(function (el) { if (el.willValidate) el.setAttribute("aria-invalid", el.validity.valid ? "false" : "true"); });
         var bad = $(":invalid", form); if (bad) bad.focus();
-        setNote("Revisa los campos obligatorios.", "err"); return;
+        var n = $$(":invalid", form).filter(function (el) { return el.tagName !== "FORM" && el.tagName !== "FIELDSET"; }).length;
+        setNote(n === 1 ? "Falta completar 1 campo marcado en rojo." : "Faltan completar " + n + " campos marcados en rojo.", "err"); return;
       }
       var data = collect(form);
       track("form_submit", { formulario: id, necesidad: data.necesidad || data.intencion || "" });
