@@ -48,7 +48,9 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [x] (17 oct 2026) Parqueadero "privado" (CH-004, CH-029) y "M y carro" (CH-031) se publican como 1 parqueadero.
 - [ ] CH-033: la hoja dice "Parqueadero: para moto"; no se publica parqueadero.
 - [ ] CH-024: la hoja dice "Parqueadero: 1 moto"; no se publica parqueadero para no confundir con carro.
-- [ ] CH-032 y CH-025 van en primera fila con la placa "Fotos pronto": faltan sus fotos en Drive.
+- [x] (19 oct 2026) Fotos publicadas de CH-015, 017, 019, 021, 023, 028, 032 y 033 (55 fotos; se pixelaron placas en CH-019).
+- [ ] CH-025: las imágenes de su carpeta son de IA ("Imagen de ChatGPT"); no se publican hasta tener fotos reales.
+- [ ] CH-026: 9 de sus 10 fotos coinciden con las de CH-010 (Santa Bárbara, Palermo, suspendido): confirmar si es el mismo inmueble antes de publicarlas.
 - [ ] Revisar en Drive (lo vi al ordenar las fotos):
       - Las carpetas CH-007 y CH-010 tienen 5 fotos idénticas de una casa nueva con garaje. En la web,
         CH-007 lleva solo sus fotos propias (fachada, pasillo, cocina, habitación y balcón); confirmar.
