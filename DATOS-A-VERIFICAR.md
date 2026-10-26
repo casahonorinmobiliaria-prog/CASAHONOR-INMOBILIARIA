@@ -51,6 +51,12 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [x] (19 oct 2026) Fotos publicadas de CH-015, 017, 019, 021, 023, 028, 032 y 033 (55 fotos; se pixelaron placas en CH-019).
 - [x] (19 oct 2026) CH-025 publicado con 8 fotos reales retocadas con ChatGPT (luz y color), confirmado por el usuario.
 - [x] (19 oct 2026) CH-026 publicado con 9 fotos (son las mismas de la carpeta de CH-010, que está suspendido y no se publica).
+- [x] (26 oct 2026) Fotos publicadas de CH-004 Bosques de Ciprés (13; se quitó una repetida) y CH-034 San Telmo (8).
+      En Drive están en carpetas con otro número: "CH-034 … Bosques de Cipres (100M)" y "CH-036 Apartamento San Telmo (175M)".
+      La web conserva los códigos de la hoja (CH-004 y CH-034) para no romper los enlaces ya compartidos.
+- [ ] CH-029 Altico, edificio El Mundo: sigue con "Fotos pronto". Sus dos carpetas en Drive ("CH-029 …" y "CH-035 … El mundo (320M)") están vacías.
+- [ ] Filas nuevas en "INVENTARIO VENTA CASA HONOR" que aún no están en la web: casa en Santa Ana / Álamos Norte ($320M),
+      apartamento en Prados del Sauce 5º piso ($140M), apartamento en Conjunto Goya ($190M) y casa en Pozo Azul (sin precio de venta).
 - [ ] Revisar en Drive (lo vi al ordenar las fotos):
       - Las carpetas CH-007 y CH-010 tienen 5 fotos idénticas de una casa nueva con garaje. En la web,
         CH-007 lleva solo sus fotos propias (fachada, pasillo, cocina, habitación y balcón); confirmar.
