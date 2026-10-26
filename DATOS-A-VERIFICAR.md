@@ -54,6 +54,7 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [x] (26 oct 2026) Fotos publicadas de CH-004 Bosques de Ciprés (13; se quitó una repetida) y CH-034 San Telmo (8).
       En Drive están en carpetas con otro número: "CH-034 … Bosques de Cipres (100M)" y "CH-036 Apartamento San Telmo (175M)".
       La web conserva los códigos de la hoja (CH-004 y CH-034) para no romper los enlaces ya compartidos.
+- [x] (26 oct 2026) CH-004 Bosques de Ciprés pasa a $135M por indicación del usuario (la hoja de venta aún dice $100M).
 - [ ] CH-029 Altico, edificio El Mundo: sigue con "Fotos pronto". Sus dos carpetas en Drive ("CH-029 …" y "CH-035 … El mundo (320M)") están vacías.
 - [ ] Filas nuevas en "INVENTARIO VENTA CASA HONOR" que aún no están en la web: casa en Santa Ana / Álamos Norte ($320M),
       apartamento en Prados del Sauce 5º piso ($140M), apartamento en Conjunto Goya ($190M) y casa en Pozo Azul (sin precio de venta).

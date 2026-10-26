@@ -71,7 +71,7 @@ window.CASAHONOR = {
 
 window.CASAHONOR_PROPIEDADES = [
   { codigo:"CH-002", titulo:"Apartamento en Bosques de San Luis, Torres Azules", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de San Luis", precio:110000000, habitaciones:3, "baños":1, area:48.8, parqueadero:1, estrato:2, vitrina:1, fotos:8 },
-  { codigo:"CH-004", titulo:"Apartamento en Bosques de Ciprés", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de Ciprés", precio:100000000, habitaciones:3, "baños":1, area:46.5, parqueadero:1, estrato:2, fotos:13 },
+  { codigo:"CH-004", titulo:"Apartamento en Bosques de Ciprés", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de Ciprés", precio:135000000, habitaciones:3, "baños":1, area:46.5, parqueadero:1, estrato:2, fotos:13 },
   { codigo:"CH-005", titulo:"Casa en Oasis", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Oasis", precio:150000000, habitaciones:3, "baños":1, area:78, parqueadero:1, estrato:2, fotos:8 },
   { codigo:"CH-006", titulo:"Casa en Acacias 2ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Acacias 2ª etapa", precio:165000000, habitaciones:4, "baños":2, area:63, parqueadero:1, estrato:2, fotos:7 },
   { codigo:"CH-007", titulo:"Casa en Acacias 1ª etapa", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Acacias 1ª etapa", precio:180000000, habitaciones:9, "baños":3, area:84, parqueadero:1, estrato:2, fotos:5 },
