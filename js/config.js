@@ -91,7 +91,6 @@ window.CASAHONOR_PROPIEDADES = [
   { codigo:"CH-021", titulo:"Casa en La Arboleda", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"La Arboleda", precio:350000000, habitaciones:4, "baños":3, area:0, parqueadero:0, estrato:3, fotos:8 },
   { codigo:"CH-022", titulo:"Casa en Yahaira", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Yahaira", precio:450000000, habitaciones:5, "baños":3, area:84, parqueadero:0, estrato:2, fotos:10 },
   { codigo:"CH-023", titulo:"Casa en Villa Milena", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Villa Milena", precio:450000000, habitaciones:7, "baños":4, area:90, parqueadero:2, estrato:2, fotos:8 },
-  { codigo:"CH-024", titulo:"Casa en Luis Ignacio Andrade", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Luis Ignacio Andrade", precio:145000000, habitaciones:3, "baños":1, area:72, parqueadero:0, estrato:0, destacada:true, foco:"60% 58%", fotos:10 },
   { codigo:"CH-025", titulo:"Apartamento en Bosques de San Luis, Torres Azules", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de San Luis", precio:95000000, habitaciones:3, "baños":1, area:0, parqueadero:0, estrato:2, vitrina:3, fotos:8 },
   // [VERIFICAR] La hoja dice Neiva; en la web anterior la urbanización figuraba en Palermo.
   { codigo:"CH-026", titulo:"Casa en Hacienda Santa Bárbara", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Hacienda Santa Bárbara", precio:270000000, habitaciones:3, "baños":3, area:98.4, parqueadero:1, estrato:0, fotos:9 },
@@ -103,5 +102,10 @@ window.CASAHONOR_PROPIEDADES = [
   { codigo:"CH-032", titulo:"Apartamento en Bosques de San Luis, 5º piso", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Bosques de San Luis", precio:95000000, habitaciones:3, "baños":1, area:43.88, parqueadero:2, estrato:2, vitrina:2, fotos:6 },
   // La hoja dice "Parqueadero: para moto"; no se publica parqueadero para no confundir con carro.
   { codigo:"CH-033", titulo:"Casa en Villa Magdalena", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Villa Magdalena", precio:250000000, habitaciones:2, "baños":1, area:0, parqueadero:0, estrato:2, fotos:8 },
-  { codigo:"CH-034", titulo:"Apartamento en Conjunto San Telmo", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Conjunto San Telmo", precio:175000000, habitaciones:3, "baños":2, area:65.72, parqueadero:1, estrato:2, fotos:8 }
+  { codigo:"CH-034", titulo:"Apartamento en Conjunto San Telmo", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Conjunto San Telmo", precio:175000000, habitaciones:3, "baños":2, area:65.72, parqueadero:1, estrato:2, fotos:8 },
+  // Hoja: solo precio de venta; habitaciones, baños y área sin dato todavía.
+  { codigo:"CH-037", titulo:"Casa en Santa Isabel", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Santa Isabel", precio:145000000, habitaciones:0, "baños":0, area:0, parqueadero:0, estrato:0, fotos:7 },
+  { codigo:"CH-038", titulo:"Apartamento en Conjunto Goya", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Conjunto Goya", precio:190000000, habitaciones:3, "baños":1, area:59, parqueadero:1, estrato:2, destacada:true, foco:"50% 55%", fotos:14 },
+  { codigo:"CH-039", titulo:"Casa en Santa Ana, Álamos Norte", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Álamos Norte", precio:320000000, habitaciones:4, "baños":2, area:122, parqueadero:1, estrato:2, fotos:0 },
+  { codigo:"CH-040", titulo:"Apartamento en Prados del Sauce, 5º piso", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Prados del Sauce", precio:140000000, habitaciones:3, "baños":1, area:46.76, parqueadero:1, estrato:2, fotos:0 }
 ];

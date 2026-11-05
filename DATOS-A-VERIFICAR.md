@@ -47,7 +47,7 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
       y CH-034 Apartamento en Conjunto San Telmo ($175M). La carpeta de Drive de CH-033 está vacía y CH-034 no tiene carpeta.
 - [x] (17 oct 2026) Parqueadero "privado" (CH-004, CH-029) y "M y carro" (CH-031) se publican como 1 parqueadero.
 - [ ] CH-033: la hoja dice "Parqueadero: para moto"; no se publica parqueadero.
-- [ ] CH-024: la hoja dice "Parqueadero: 1 moto"; no se publica parqueadero para no confundir con carro.
+- [x] (5 nov 2026) CH-024 Luis Ignacio Andrade sale de la web: la hoja de venta la marca Vendido. La nueva destacada es CH-038 Goya.
 - [x] (19 oct 2026) Fotos publicadas de CH-015, 017, 019, 021, 023, 028, 032 y 033 (55 fotos; se pixelaron placas en CH-019).
 - [x] (19 oct 2026) CH-025 publicado con 8 fotos reales retocadas con ChatGPT (luz y color), confirmado por el usuario.
 - [x] (19 oct 2026) CH-026 publicado con 9 fotos (son las mismas de la carpeta de CH-010, que está suspendido y no se publica).
@@ -56,8 +56,11 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
       La web conserva los códigos de la hoja (CH-004 y CH-034) para no romper los enlaces ya compartidos.
 - [x] (26 oct 2026) CH-004 Bosques de Ciprés pasa a $135M por indicación del usuario (la hoja de venta aún dice $100M).
 - [ ] CH-029 Altico, edificio El Mundo: sigue con "Fotos pronto". Sus dos carpetas en Drive ("CH-029 …" y "CH-035 … El mundo (320M)") están vacías.
-- [ ] Filas nuevas en "INVENTARIO VENTA CASA HONOR" que aún no están en la web: casa en Santa Ana / Álamos Norte ($320M),
-      apartamento en Prados del Sauce 5º piso ($140M), apartamento en Conjunto Goya ($190M) y casa en Pozo Azul (sin precio de venta).
+- [x] (5 nov 2026) Publicados: CH-037 Casa en Santa Isabel ($145M, 7 fotos), CH-038 Apartamento en Conjunto Goya ($190M, 14 fotos),
+      CH-039 Casa en Santa Ana, Álamos Norte ($320M, "Fotos pronto") y CH-040 Apartamento en Prados del Sauce 5º piso ($140M, "Fotos pronto").
+      CH-037 y CH-038 usan el mismo número que su carpeta en Drive.
+- [ ] CH-037 Santa Isabel: la hoja solo trae el precio; faltan habitaciones, baños, área y estrato.
+- [ ] Casa en Pozo Azul: sin "Precio de venta" en la hoja (solo PVF). No se publica hasta tener el precio.
 - [ ] Revisar en Drive (lo vi al ordenar las fotos):
       - Las carpetas CH-007 y CH-010 tienen 5 fotos idénticas de una casa nueva con garaje. En la web,
         CH-007 lleva solo sus fotos propias (fachada, pasillo, cocina, habitación y balcón); confirmar.
