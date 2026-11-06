@@ -63,7 +63,7 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
 - [x] (6 nov 2026) Publicado CH-042 Casa en Pozo Azul a $76M por indicación del usuario (la hoja aún no trae "Precio de venta"). Sin fotos: "Fotos pronto".
 - [x] (6 nov 2026) Publicado CH-041 Casa en Santa Isabel ($150M, 6 fotos retocadas; se pixeló el número de la casa).
       Sale de la carpeta de Drive "CH-039 Casa Santa Isabel (150M)" (en la web, CH-039 es Santa Ana). Es otra casa, no la CH-037.
-- [ ] CH-041: agregar su fila en la hoja de venta y confirmar precio ($150M), habitaciones, baños y área.
+- [x] (6 nov 2026) CH-041: 3 habitaciones, 1 baño, 76,56 m² según el aviso del usuario. Falta su fila en la hoja de venta.
 - [ ] Revisar en Drive (lo vi al ordenar las fotos):
       - Las carpetas CH-007 y CH-010 tienen 5 fotos idénticas de una casa nueva con garaje. En la web,
         CH-007 lleva solo sus fotos propias (fachada, pasillo, cocina, habitación y balcón); confirmar.
