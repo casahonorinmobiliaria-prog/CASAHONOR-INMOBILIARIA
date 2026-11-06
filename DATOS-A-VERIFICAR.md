@@ -60,7 +60,7 @@ cada dato. **No publicar cifras ni afirmaciones sin verificar.**
       CH-039 Casa en Santa Ana, Álamos Norte ($320M, "Fotos pronto") y CH-040 Apartamento en Prados del Sauce 5º piso ($140M, "Fotos pronto").
       CH-037 y CH-038 usan el mismo número que su carpeta en Drive.
 - [ ] CH-037 Santa Isabel: la hoja solo trae el precio; faltan habitaciones, baños, área y estrato.
-- [ ] Casa en Pozo Azul: sin "Precio de venta" en la hoja (solo PVF). No se publica hasta tener el precio.
+- [x] (6 nov 2026) Publicado CH-042 Casa en Pozo Azul a $76M por indicación del usuario (la hoja aún no trae "Precio de venta"). Sin fotos: "Fotos pronto".
 - [x] (6 nov 2026) Publicado CH-041 Casa en Santa Isabel ($150M, 6 fotos retocadas; se pixeló el número de la casa).
       Sale de la carpeta de Drive "CH-039 Casa Santa Isabel (150M)" (en la web, CH-039 es Santa Ana). Es otra casa, no la CH-037.
 - [ ] CH-041: agregar su fila en la hoja de venta y confirmar precio ($150M), habitaciones, baños y área.

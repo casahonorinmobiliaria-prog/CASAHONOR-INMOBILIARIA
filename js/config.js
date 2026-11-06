@@ -110,5 +110,7 @@ window.CASAHONOR_PROPIEDADES = [
   { codigo:"CH-040", titulo:"Apartamento en Prados del Sauce, 5º piso", op:"venta", tipo:"apartamento", tipoLabel:"Apartamento", ciudad:"Neiva", sector:"Prados del Sauce", precio:140000000, habitaciones:3, "baños":1, area:46.76, parqueadero:1, estrato:2, fotos:0 },
   // Carpeta de Drive "CH-039 Casa Santa Isabel (150M)": otra casa, distinta de CH-037. Aún sin fila en la hoja de venta;
   // precio tomado del nombre de la carpeta. Habitaciones, baños y área sin dato.
-  { codigo:"CH-041", titulo:"Casa en Santa Isabel", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Santa Isabel", precio:150000000, habitaciones:0, "baños":0, area:0, parqueadero:0, estrato:0, fotos:6 }
+  { codigo:"CH-041", titulo:"Casa en Santa Isabel", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Santa Isabel", precio:150000000, habitaciones:0, "baños":0, area:0, parqueadero:0, estrato:0, fotos:6 },
+  // Precio de venta $76M indicado por el usuario (6 nov 2026); la hoja de venta solo trae el PVF.
+  { codigo:"CH-042", titulo:"Casa en Pozo Azul", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Pozo Azul", precio:76000000, habitaciones:4, "baños":1, area:0, parqueadero:0, estrato:2, fotos:0 }
 ];
