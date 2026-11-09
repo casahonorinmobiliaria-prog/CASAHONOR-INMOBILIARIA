@@ -278,7 +278,7 @@
   }
   function featHtml(p) {
     return '<article class="pfeat"' + dataAttrs(p) + '>' +
-      '<div class="pfeat__img"><img src="' + fotosDe(p)[0] + '" alt="' + esc(p.titulo + ", " + p.sector + ", " + p.ciudad) + '" width="1600" height="1200" loading="eager"' + (p.foco ? ' style="object-position:' + esc(p.foco) + '"' : '') + '></div>' +
+      '<div class="pfeat__img"><img src="' + fotosDe(p)[0] + '" alt="' + esc(p.titulo + ", " + p.ciudad) + '" width="1600" height="1200" loading="eager"' + (p.foco ? ' style="object-position:' + esc(p.foco) + '"' : '') + '></div>' +
       '<div class="pfeat__scrim" aria-hidden="true"></div>' +
       '<span class="pfeat__flag">Destacada</span>' +
       '<div class="pfeat__panel glass">' +
@@ -580,7 +580,7 @@
     var a = areaSpec(p); if (a) specs.push("<li>" + a + "</li>");
     if (p.parqueadero) specs.push("<li>" + plural(p.parqueadero, "parqueadero", "parqueaderos") + "</li>");
     if (p.estrato) specs.push("<li>Estrato <b>" + p.estrato + "</b></li>");
-    var visitaMsg = "Hola, quiero agendar una visita a la propiedad código " + p.codigo + " (" + p.titulo + ", " + p.sector + ").";
+    var visitaMsg = "Hola, quiero agendar una visita a la propiedad código " + p.codigo + " (" + p.titulo + ", " + p.ciudad + ").";
     var acciones = fotos.length
       ? '<a class="btn btn--primary" href="' + waLink(visitaMsg) + '" target="_blank" rel="noopener">Agendar visita</a>' +
         '<a class="btn btn--ghost" href="' + waLink(infoMsg(p)) + '" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#ic-chat"/></svg>WhatsApp</a>'
