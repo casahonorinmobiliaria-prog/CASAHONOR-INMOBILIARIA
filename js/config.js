@@ -86,7 +86,6 @@ window.CASAHONOR_PROPIEDADES = [
   // [VERIFICAR] La hoja dice 45,8 m²; la CH-014 del mismo conjunto tiene 105 m² por menos precio.
   { codigo:"CH-017", titulo:"Casa en venta, conjunto residencial San Valentín", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Conjunto San Valentín", precio:300000000, habitaciones:3, "baños":2, area:0, parqueadero:0, estrato:2, fotos:8 },
   { codigo:"CH-019", titulo:"Casa en venta, sector Tesoro", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Tesoro", precio:320000000, habitaciones:3, "baños":3, area:0, parqueadero:0, estrato:2, fotos:5 },
-  { codigo:"CH-020", titulo:"Casa en venta, sector Sendero del Río", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Sendero del Río", precio:340000000, habitaciones:3, "baños":3, area:0, parqueadero:2, estrato:3, fotos:8 },
   { codigo:"CH-021", titulo:"Casa en venta, sector La Arboleda", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"La Arboleda", precio:350000000, habitaciones:4, "baños":3, area:0, parqueadero:0, estrato:3, fotos:8 },
   { codigo:"CH-022", titulo:"Casa en venta, sector Yahaira", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Yahaira", precio:450000000, habitaciones:5, "baños":3, area:84, parqueadero:0, estrato:2, fotos:10 },
   { codigo:"CH-023", titulo:"Casa en venta, sector Villa Milena", op:"venta", tipo:"casa", tipoLabel:"Casa", ciudad:"Neiva", sector:"Villa Milena", precio:450000000, habitaciones:7, "baños":4, area:90, parqueadero:2, estrato:2, fotos:8 },
